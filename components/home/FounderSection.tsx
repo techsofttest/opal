@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
@@ -7,13 +8,14 @@ export const FounderSection = () => {
       <ScrollReveal className="wrap grid grid-cols-[0.85fr_1.15fr] max-[860px]:grid-cols-1 gap-[clamp(32px,6vw,80px)] items-center">
         {/* Founder Portrait */}
         <figure className="relative aspect-[4/5] max-[860px]:aspect-[4/3] max-[520px]:aspect-[1/1] max-w-full rounded-[4px] overflow-hidden bg-palm m-0 shadow-sm reveal">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/founder/founder.jpeg"
             alt="Late Mr. Ramachandran Nair, Founder of Opal Landscaping and RC Group"
-            className="w-full h-full object-cover object-top block"
+            fill
+            sizes="(max-width: 860px) 100vw, 40vw"
+            className="object-cover object-top"
           />
-          <figcaption className="absolute left-[14px] right-[14px] bottom-[14px] flex justify-between gap-[10px] font-mono text-[0.7rem] tracking-[0.08em] text-on-palm uppercase [text-shadow:0_1px_3px_rgba(0,0,0,0.6)]">
+          <figcaption className="absolute left-[14px] right-[14px] bottom-[14px] flex justify-between gap-[10px] font-mono text-[0.7rem] tracking-[0.08em] text-on-palm uppercase [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] z-10">
             <span>Mr. Ramachandran Nair</span>
           </figcaption>
         </figure>

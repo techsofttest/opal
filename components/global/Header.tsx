@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -14,10 +15,12 @@ export const Header = () => {
           aria-label="Opal Landscaping home"
         >
           <div className="bg-white px-3 pt-1 pb-3 rounded-b-2xl border-x border-b border-line shadow-md transition-transform duration-200 hover:scale-[1.02]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/logo/logo.jpeg"
               alt="Opal Landscaping Logo"
+              width={112}
+              height={112}
+              priority
               className="w-24 h-24 sm:w-28 sm:h-28 object-contain shrink-0 rounded-b-xl"
             />
           </div>

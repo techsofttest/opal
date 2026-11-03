@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
@@ -44,13 +45,15 @@ export const HeroSection = () => {
         </div>
 
         <figure className="relative aspect-[4/5] max-[860px]:aspect-[16/11] max-w-full rounded-[4px] overflow-hidden bg-palm m-0 reveal delay-2">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/img/pool-aerial.jpg"
             alt="Resort pool deck at night with lit date palms in island planters"
-            className="absolute inset-0 w-full h-full object-cover"
+            fill
+            priority
+            sizes="(max-width: 860px) 100vw, 45vw"
+            className="object-cover"
           />
-          <figcaption className="absolute left-[14px] right-[14px] bottom-[14px] flex justify-between gap-[10px] font-mono text-[0.7rem] tracking-[0.08em] text-on-palm uppercase [text-shadow:0_1px_3px_rgba(0,0,0,0.6)]">
+          <figcaption className="absolute left-[14px] right-[14px] bottom-[14px] flex justify-between gap-[10px] font-mono text-[0.7rem] tracking-[0.08em] text-on-palm uppercase [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] z-10">
             <span>Pool deck · palm uplighting</span>
             <span>Dubai</span>
           </figcaption>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
@@ -235,14 +236,19 @@ export const WorkSection = () => {
                   item.wide ? "col-span-2 max-[520px]:col-auto" : ""
                 } ${item.tall ? "row-span-2 max-[520px]:row-auto" : ""}`}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                   src={item.src}
                   alt={item.alt}
+                  fill
+                  sizes={
+                    item.wide
+                      ? "(max-width: 520px) 100vw, (max-width: 860px) 100vw, 66vw"
+                      : "(max-width: 520px) 100vw, (max-width: 860px) 50vw, 33vw"
+                  }
                   loading="lazy"
-                  className="w-full h-full object-cover block transition-transform duration-[600ms] ease-in-out group-hover:scale-[1.04]"
+                  className="object-cover block transition-transform duration-[600ms] ease-in-out group-hover:scale-[1.04]"
                 />
-                <figcaption className="absolute left-0 right-0 bottom-0 p-[28px_14px_12px] bg-gradient-to-t from-[rgba(8,16,12,0.78)] to-transparent text-[#f2f5ef] text-[0.88rem] grid gap-[2px]">
+                <figcaption className="absolute left-0 right-0 bottom-0 p-[28px_14px_12px] bg-gradient-to-t from-[rgba(8,16,12,0.78)] to-transparent text-[#f2f5ef] text-[0.88rem] grid gap-[2px] z-10">
                   <small className="font-mono text-[0.68rem] tracking-[0.1em] uppercase text-[#cfe0c4]">
                     {item.category}
                   </small>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
@@ -65,14 +66,14 @@ export const BlogSection = () => {
               className={`bg-paper border border-line rounded-[6px] overflow-hidden flex flex-col group transition-all duration-300 hover:shadow-md hover:-translate-y-1 reveal delay-${idx + 1}`}
             >
               <figure className="relative aspect-[16/10] overflow-hidden m-0 bg-sand-2">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                   src={post.image}
                   alt={post.alt}
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  fill
+                  sizes="(max-width: 860px) 100vw, 33vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <span className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm text-brand-orange border border-line font-mono text-[0.7rem] uppercase tracking-wider font-semibold py-1 px-2.5 rounded-full">
+                <span className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm text-brand-orange border border-line font-mono text-[0.7rem] uppercase tracking-wider font-semibold py-1 px-2.5 rounded-full z-10">
                   {post.category}
                 </span>
               </figure>

@@ -32,6 +32,10 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
         />
+        {/* Preload critical above-the-fold media */}
+        <link rel="preload" as="image" href="/logo/logo.jpeg" />
+        <link rel="preload" as="image" href="/img/pool-aerial.jpg" />
+        <link rel="preload" as="image" href="/founder/founder.jpeg" />
       </head>
       <body>{children}</body>
     </html>
