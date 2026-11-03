@@ -189,7 +189,7 @@ export const ContactSection = () => {
           </label>
 
           <button
-            className="btn btn-solid justify-self-start"
+            className="btn btn-orange justify-self-start"
             type="submit"
           >
             Prepare my enquiry
@@ -209,7 +209,7 @@ export const ContactSection = () => {
               </pre>
               <div className="flex flex-wrap gap-2">
                 <a
-                  className="btn btn-solid !py-[0.6em] !px-[1em] !text-[0.88rem]"
+                  className="btn btn-orange !py-[0.6em] !px-[1em] !text-[0.88rem]"
                   id="waLink"
                   href={`https://wa.me/971509040480?text=${encodeURIComponent(
                     outText

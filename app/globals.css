@@ -2,18 +2,35 @@
 
 @layer base {
   :root {
-    --sand: #efe9dc;
-    --sand-2: #e4dccb;
-    --paper: #f8f5ee;
-    --ink: #16231c;
-    --ink-2: #4a5a50;
-    --line: #cfc6b3;
-    --palm: #1f4a36;
-    --palm-2: #2d6a4c;
-    --leaf: #7fae5a;
-    --water: #2f8f9d;
-    --on-palm: #eef3ea;
-    --on-palm-2: #b8cbbd;
+    /* Base paper, sand tint & neutral ink */
+    --sand: #f0f4f8;
+    --sand-2: #e2e9f1;
+    --paper: #f8fafc;
+    --ink: #0f1c2e;
+    --ink-2: #475a72;
+    --line: #cbd5e1;
+
+    /* Primary Deep Blue (replaces dark palm forest) */
+    --palm: #0e3a63;
+    --palm-2: #092c4d;
+
+    /* Secondary / Vibrant Green (replaces leaf, for badges, highlights on dark) */
+    --leaf: #10b981;
+
+    /* Warm Vibrant Orange (CTA, focus, key accents, water) */
+    --water: #ea580c;
+    --orange: #ea580c;
+    --orange-hover: #c2410c;
+
+    /* Text on Deep Blue surfaces */
+    --on-palm: #f8fafc;
+    --on-palm-2: #bfdbfe;
+
+    /* Brand Theme Colors */
+    --brand-blue: #0e3a63;
+    --brand-green: #10b981;
+    --brand-orange: #ea580c;
+
     --display: "Gloock", "Georgia", serif;
     --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
     --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -83,8 +100,13 @@
   --color-palm-2: var(--palm-2);
   --color-leaf: var(--leaf);
   --color-water: var(--water);
+  --color-orange: var(--orange);
+  --color-orange-hover: var(--orange-hover);
   --color-on-palm: var(--on-palm);
   --color-on-palm-2: var(--on-palm-2);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-green: var(--brand-green);
+  --color-brand-orange: var(--brand-orange);
   --font-display: var(--display);
   --font-body: var(--body);
   --font-mono: var(--mono);
@@ -136,6 +158,18 @@
   .btn-solid:hover {
     background: var(--palm-2);
     border-color: var(--palm-2);
+  }
+
+  .btn-orange {
+    background: var(--orange);
+    border-color: var(--orange);
+    color: #ffffff;
+  }
+
+  .btn-orange:hover {
+    background: var(--orange-hover);
+    border-color: var(--orange-hover);
+    color: #ffffff;
   }
 
   .btn-ghost {

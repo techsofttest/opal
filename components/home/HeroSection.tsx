@@ -17,7 +17,7 @@ export const HeroSection = () => {
             team of 700+ people.
           </p>
           <div className="flex flex-wrap gap-3 mt-8">
-            <a className="btn btn-solid" href="#contact">
+            <a className="btn btn-orange" href="#contact">
               Request a site visit
             </a>
             <a className="btn btn-ghost" href="#services">

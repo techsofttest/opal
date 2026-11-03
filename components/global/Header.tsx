@@ -43,7 +43,7 @@ export const Header = () => {
             onClick={() => setMenuOpen(false)}
             className="no-underline font-medium text-[0.95rem] text-ink-2 hover:text-ink max-[860px]:py-3 max-[860px]:w-full max-[860px]:border-b max-[860px]:border-line"
           >
-            About
+            About Us
           </a>
           <a
             href="#services"
@@ -67,18 +67,11 @@ export const Header = () => {
             Clients
           </a>
           <a
-            href="#group"
-            onClick={() => setMenuOpen(false)}
-            className="no-underline font-medium text-[0.95rem] text-ink-2 hover:text-ink max-[860px]:py-3 max-[860px]:w-full max-[860px]:border-b max-[860px]:border-line"
-          >
-            RC Group
-          </a>
-          <a
             href="#csr"
             onClick={() => setMenuOpen(false)}
             className="no-underline font-medium text-[0.95rem] text-ink-2 hover:text-ink max-[860px]:py-3 max-[860px]:w-full max-[860px]:border-b max-[860px]:border-line"
           >
-            Punarjani
+            Blogs
           </a>
           <a
             href="#faq"
@@ -88,7 +81,7 @@ export const Header = () => {
             FAQ
           </a>
           <a
-            className="btn btn-solid max-[860px]:mt-3 max-[860px]:w-auto"
+            className="btn btn-orange max-[860px]:mt-3 max-[860px]:w-auto"
             href="#contact"
             onClick={() => setMenuOpen(false)}
           >
