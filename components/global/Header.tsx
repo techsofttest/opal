@@ -13,7 +13,7 @@ export const Header = () => {
           href="#top"
           aria-label="Opal Landscaping home"
         >
-          <div className="bg-white px-1 pb-1 rounded-b-2xl border-x border-b border-line shadow-md transition-transform duration-200 hover:scale-[1.02]">
+          <div className="bg-white px-3 pt-1 pb-3 rounded-b-2xl border-x border-b border-line shadow-md transition-transform duration-200 hover:scale-[1.02]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/logo/logo.jpeg"
@@ -34,8 +34,9 @@ export const Header = () => {
         </button>
 
         <nav
-          className={`flex items-center gap-[26px] max-[860px]:gap-0 max-[860px]:absolute max-[860px]:left-0 max-[860px]:right-0 max-[860px]:top-[84px] max-[860px]:flex-col max-[860px]:items-start max-[860px]:bg-paper max-[860px]:border-b max-[860px]:border-line max-[860px]:py-2 max-[860px]:px-[max(20px,env(safe-area-inset-left,0px))] ${menuOpen ? "max-[860px]:flex" : "max-[860px]:hidden"
-            }`}
+          className={`flex items-center gap-[26px] max-[860px]:gap-0 max-[860px]:absolute max-[860px]:left-0 max-[860px]:right-0 max-[860px]:top-[84px] max-[860px]:flex-col max-[860px]:items-start max-[860px]:bg-paper max-[860px]:border-b max-[860px]:border-line max-[860px]:py-2 max-[860px]:px-[max(20px,env(safe-area-inset-left,0px))] ${
+            menuOpen ? "max-[860px]:flex" : "max-[860px]:hidden"
+          }`}
           id="navLinks"
         >
           <a
@@ -43,7 +44,7 @@ export const Header = () => {
             onClick={() => setMenuOpen(false)}
             className="no-underline font-medium text-[0.95rem] text-ink-2 hover:text-ink max-[860px]:py-3 max-[860px]:w-full max-[860px]:border-b max-[860px]:border-line"
           >
-            About Us
+            About
           </a>
           <a
             href="#services"
@@ -67,7 +68,7 @@ export const Header = () => {
             Clients
           </a>
           <a
-            href="#csr"
+            href="#blogs"
             onClick={() => setMenuOpen(false)}
             className="no-underline font-medium text-[0.95rem] text-ink-2 hover:text-ink max-[860px]:py-3 max-[860px]:w-full max-[860px]:border-b max-[860px]:border-line"
           >
@@ -92,4 +93,3 @@ export const Header = () => {
     </header>
   );
 };
-

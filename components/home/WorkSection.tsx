@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const WorkSection = () => {
   const [filter, setFilter] = useState("all");
@@ -182,16 +183,18 @@ export const WorkSection = () => {
 
   return (
     <section id="work" className="py-[clamp(64px,9vw,120px)]">
-      <div className="wrap">
+      <ScrollReveal className="wrap">
         <div className="flex justify-between items-end gap-6 flex-wrap mb-0">
           <div className="grid gap-[14px] max-w-[640px]">
-            <Eyebrow>Our work</Eyebrow>
-            <h2 className="heading-display text-[clamp(2rem,4.2vw,3.2rem)]">
+            <div className="reveal">
+              <Eyebrow>Our work</Eyebrow>
+            </div>
+            <h2 className="heading-display text-[clamp(2rem,4.2vw,3.2rem)] reveal delay-1">
               Recent projects across Dubai.
             </h2>
           </div>
           <div
-            className="flex flex-wrap gap-2 max-w-none"
+            className="flex flex-wrap gap-2 max-w-none reveal delay-2"
             role="group"
             aria-label="Filter projects"
           >
@@ -228,7 +231,7 @@ export const WorkSection = () => {
             return (
               <figure
                 key={index}
-                className={`m-0 relative overflow-hidden rounded-[4px] bg-sand-2 group ${
+                className={`m-0 relative overflow-hidden rounded-[4px] bg-sand-2 group reveal ${
                   item.wide ? "col-span-2 max-[520px]:col-auto" : ""
                 } ${item.tall ? "row-span-2 max-[520px]:row-auto" : ""}`}
               >
@@ -249,8 +252,7 @@ export const WorkSection = () => {
             );
           })}
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 };
-

@@ -1,4 +1,5 @@
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const ServicesSection = () => {
   const services = [
@@ -55,15 +56,17 @@ export const ServicesSection = () => {
 
   return (
     <section id="services" className="bg-sand py-[clamp(64px,9vw,120px)]">
-      <div className="wrap">
+      <ScrollReveal className="wrap">
         <div className="flex justify-between items-end gap-6 flex-wrap mb-12">
           <div className="grid gap-[14px] max-w-[640px]">
-            <Eyebrow>What we do</Eyebrow>
-            <h2 className="heading-display text-[clamp(2rem,4.2vw,3.2rem)]">
+            <div className="reveal">
+              <Eyebrow>What we do</Eyebrow>
+            </div>
+            <h2 className="heading-display text-[clamp(2rem,4.2vw,3.2rem)] reveal delay-1">
               One contractor, from first sketch to year-five maintenance.
             </h2>
           </div>
-          <a className="btn btn-ghost" href="#contact">
+          <a className="btn btn-ghost reveal delay-2" href="#contact">
             Discuss a project
           </a>
         </div>
@@ -72,7 +75,7 @@ export const ServicesSection = () => {
           {services.map((svc, index) => (
             <div
               key={index}
-              className="grid grid-cols-[200px_1fr_1.1fr] max-[860px]:grid-cols-1 gap-7 max-[860px]:gap-[10px] py-7 border-b border-line items-start"
+              className="grid grid-cols-[200px_1fr_1.1fr] max-[860px]:grid-cols-1 gap-7 max-[860px]:gap-[10px] py-7 border-b border-line items-start reveal"
             >
               <span className="font-mono text-[0.75rem] tracking-[0.1em] uppercase text-water pt-[6px]">
                 {svc.tag}
@@ -94,8 +97,7 @@ export const ServicesSection = () => {
             </div>
           ))}
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 };
-

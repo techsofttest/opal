@@ -1,19 +1,22 @@
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const FaqSection = () => {
   return (
     <section id="faq" className="py-[clamp(64px,9vw,120px)]">
-      <div className="wrap grid grid-cols-[0.8fr_1.2fr] max-[860px]:grid-cols-1 gap-[clamp(32px,6vw,80px)]">
+      <ScrollReveal className="wrap grid grid-cols-[0.8fr_1.2fr] max-[860px]:grid-cols-1 gap-[clamp(32px,6vw,80px)]">
         <div className="min-w-0">
-          <Eyebrow>FAQ</Eyebrow>
-          <h2 className="heading-display text-[clamp(2rem,4.2vw,3.2rem)] mt-[14px]">
+          <div className="reveal">
+            <Eyebrow>FAQ</Eyebrow>
+          </div>
+          <h2 className="heading-display text-[clamp(2rem,4.2vw,3.2rem)] mt-[14px] reveal delay-1">
             Common questions from Dubai clients.
           </h2>
         </div>
         <div className="min-w-0">
           <details
             open
-            className="border-b border-line py-5 first:border-t"
+            className="border-b border-line py-5 first:border-t reveal"
           >
             <summary className="cursor-pointer font-semibold text-[1.05rem] list-none flex justify-between gap-4 select-none">
               What landscaping works best in Dubai&apos;s climate?
@@ -25,7 +28,7 @@ export const FaqSection = () => {
               watering.
             </p>
           </details>
-          <details className="border-b border-line py-5 first:border-t">
+          <details className="border-b border-line py-5 first:border-t reveal delay-1">
             <summary className="cursor-pointer font-semibold text-[1.05rem] list-none flex justify-between gap-4 select-none">
               Can I use artificial grass?
             </summary>
@@ -35,7 +38,7 @@ export const FaqSection = () => {
               combine it with natural planting for shade and cooling.
             </p>
           </details>
-          <details className="border-b border-line py-5 first:border-t">
+          <details className="border-b border-line py-5 first:border-t reveal delay-2">
             <summary className="cursor-pointer font-semibold text-[1.05rem] list-none flex justify-between gap-4 select-none">
               Do I need a permit for landscaping work?
             </summary>
@@ -45,7 +48,7 @@ export const FaqSection = () => {
               approval drawings for you.
             </p>
           </details>
-          <details className="border-b border-line py-5 first:border-t">
+          <details className="border-b border-line py-5 first:border-t reveal delay-3">
             <summary className="cursor-pointer font-semibold text-[1.05rem] list-none flex justify-between gap-4 select-none">
               How often does a garden need maintenance?
             </summary>
@@ -55,7 +58,7 @@ export const FaqSection = () => {
               irrigation and how you use the space.
             </p>
           </details>
-          <details className="border-b border-line py-5 first:border-t">
+          <details className="border-b border-line py-5 first:border-t reveal delay-4">
             <summary className="cursor-pointer font-semibold text-[1.05rem] list-none flex justify-between gap-4 select-none">
               How much does landscaping cost?
             </summary>
@@ -66,8 +69,7 @@ export const FaqSection = () => {
             </p>
           </details>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 };
-

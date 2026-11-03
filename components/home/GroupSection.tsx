@@ -1,4 +1,5 @@
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const GroupSection = () => {
   const entities = [
@@ -46,39 +47,44 @@ export const GroupSection = () => {
 
   return (
     <section id="group" className="bg-sand py-[clamp(64px,9vw,120px)]">
-      <div className="wrap">
-        <Eyebrow>Part of RC Group</Eyebrow>
-        <h2 className="heading-display text-[clamp(2rem,4.2vw,3.2rem)] mt-[14px] max-w-[22ch]">
+      <ScrollReveal className="wrap">
+        <div className="reveal">
+          <Eyebrow>Part of RC Group</Eyebrow>
+        </div>
+        <h2 className="heading-display text-[clamp(2rem,4.2vw,3.2rem)] mt-[14px] max-w-[22ch] reveal delay-1">
           Backed by a group that grows its own supply chain.
         </h2>
-        <p className="lead mt-[18px]">
+        <p className="lead mt-[18px] reveal delay-2">
           RC Group, formally constituted in 2022, connects our landscaping
           work with nurseries, technical services and agri-trade in the UAE and
           India.
         </p>
-        <div className="grid grid-cols-4 max-[860px]:grid-cols-2 max-[480px]:grid-cols-1 gap-[1px] bg-line border border-line mt-11">
-          {entities.map((ent, idx) => (
-            <div
-              key={idx}
-              className={`p-6 grid gap-[6px] content-start ${
-                ent.isMain
-                  ? "bg-palm text-on-palm"
-                  : "bg-sand text-inherit"
-              }`}
-            >
-              <b className="font-semibold">{ent.name}</b>
-              <span
-                className={`text-[0.92rem] ${
-                  ent.isMain ? "text-on-palm-2" : "text-ink-2"
+
+        {/* Grid with crisp divider lines matching original design */}
+        <div className="mt-11 border border-line rounded-[4px] overflow-hidden shadow-sm reveal delay-2">
+          <div className="grid grid-cols-4 max-[860px]:grid-cols-2 max-[480px]:grid-cols-1 bg-line gap-[1px]">
+            {entities.map((ent, idx) => (
+              <div
+                key={idx}
+                className={`p-6 grid gap-[6px] content-start ${
+                  ent.isMain
+                    ? "bg-palm text-on-palm"
+                    : "bg-paper text-ink"
                 }`}
               >
-                {ent.desc}
-              </span>
-            </div>
-          ))}
+                <b className="font-semibold text-[1.02rem]">{ent.name}</b>
+                <span
+                  className={`text-[0.92rem] leading-snug ${
+                    ent.isMain ? "text-on-palm-2" : "text-ink-2"
+                  }`}
+                >
+                  {ent.desc}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 };
-

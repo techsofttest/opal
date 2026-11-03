@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -42,20 +43,22 @@ export const ContactSection = () => {
 
   return (
     <section id="contact" className="bg-palm text-on-palm py-[clamp(64px,9vw,120px)]">
-      <div className="wrap grid grid-cols-[1fr_1.1fr] max-[860px]:grid-cols-1 gap-[clamp(32px,6vw,72px)]">
+      <ScrollReveal className="wrap grid grid-cols-[1fr_1.1fr] max-[860px]:grid-cols-1 gap-[clamp(32px,6vw,72px)]">
         <div className="min-w-0">
-          <Eyebrow className="!text-leaf">Contact</Eyebrow>
-          <h2 className="heading-display text-[clamp(2rem,4.2vw,3.2rem)] mt-[14px]">
+          <div className="reveal">
+            <Eyebrow className="!text-leaf">Contact</Eyebrow>
+          </div>
+          <h2 className="heading-display text-[clamp(2rem,4.2vw,3.2rem)] mt-[14px] reveal delay-1">
             Tell us about your site.
           </h2>
           <div className="grid gap-[22px] mt-8">
-            <div className="grid gap-1">
+            <div className="grid gap-1 reveal delay-2">
               <small className="font-mono text-[0.72rem] tracking-[0.12em] uppercase text-on-palm-2">
                 Office
               </small>
               <p className="text-[1.1rem] select-all">+971 4 370 6747</p>
             </div>
-            <div className="grid gap-1">
+            <div className="grid gap-1 reveal delay-3">
               <small className="font-mono text-[0.72rem] tracking-[0.12em] uppercase text-on-palm-2">
                 WhatsApp
               </small>
@@ -68,7 +71,7 @@ export const ContactSection = () => {
                 +971 50 904 0480
               </a>
             </div>
-            <div className="grid gap-1">
+            <div className="grid gap-1 reveal delay-4">
               <small className="font-mono text-[0.72rem] tracking-[0.12em] uppercase text-on-palm-2">
                 Email
               </small>
@@ -76,7 +79,7 @@ export const ContactSection = () => {
                 info@opallandscaping.com
               </p>
             </div>
-            <div className="grid gap-1">
+            <div className="grid gap-1 reveal delay-5">
               <small className="font-mono text-[0.72rem] tracking-[0.12em] uppercase text-on-palm-2">
                 Address
               </small>
@@ -95,7 +98,7 @@ export const ContactSection = () => {
           id="quote"
           noValidate
           onSubmit={handleFormSubmit}
-          className="bg-paper text-ink rounded-[4px] p-[clamp(20px,3vw,32px)] grid gap-4 min-w-0"
+          className="bg-paper text-ink rounded-[4px] p-[clamp(20px,3vw,32px)] grid gap-4 min-w-0 reveal delay-2"
         >
           <div className="grid grid-cols-2 max-[520px]:grid-cols-1 gap-4 min-w-0">
             <label
@@ -231,8 +234,7 @@ export const ContactSection = () => {
             </div>
           )}
         </form>
-      </div>
+      </ScrollReveal>
     </section>
   );
 };
-

@@ -1,4 +1,5 @@
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const SectorsSection = () => {
   const sectors = [
@@ -36,11 +37,13 @@ export const SectorsSection = () => {
 
   return (
     <section id="sectors" className="py-[clamp(64px,9vw,120px)]">
-      <div className="wrap">
+      <ScrollReveal className="wrap">
         <div className="flex justify-between items-end gap-6 flex-wrap mb-0">
           <div className="grid gap-[14px] max-w-[640px]">
-            <Eyebrow>Who we work for</Eyebrow>
-            <h2 className="heading-display text-[clamp(2rem,4.2vw,3.2rem)]">
+            <div className="reveal">
+              <Eyebrow>Who we work for</Eyebrow>
+            </div>
+            <h2 className="heading-display text-[clamp(2rem,4.2vw,3.2rem)] reveal delay-1">
               Trusted by free zones, hotels, developers and homeowners since
               2007.
             </h2>
@@ -50,7 +53,7 @@ export const SectorsSection = () => {
           {sectors.map((sec, idx) => (
             <div
               key={idx}
-              className="p-7 border border-line rounded-[4px] grid gap-3 content-start bg-paper"
+              className={`p-7 border border-line rounded-[4px] grid gap-3 content-start bg-paper reveal delay-${idx + 1}`}
             >
               <h3 className="heading-display text-[1.45rem]">{sec.title}</h3>
               <p className="text-ink-2 text-[0.96rem]">{sec.desc}</p>
@@ -61,8 +64,10 @@ export const SectorsSection = () => {
           ))}
         </div>
         <div className="mt-10 pt-7 border-t border-line grid gap-[18px]">
-          <Eyebrow>Selected clients</Eyebrow>
-          <ul className="flex flex-wrap gap-x-[14px] gap-y-3 m-0 p-0 list-none">
+          <div className="reveal">
+            <Eyebrow>Selected clients</Eyebrow>
+          </div>
+          <ul className="flex flex-wrap gap-x-[14px] gap-y-3 m-0 p-0 list-none reveal delay-1">
             {clients.map((client) => (
               <li
                 key={client}
@@ -73,8 +78,7 @@ export const SectorsSection = () => {
             ))}
           </ul>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 };
-

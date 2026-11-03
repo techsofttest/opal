@@ -1,4 +1,5 @@
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const ProcessSection = () => {
   const steps = [
@@ -25,28 +26,37 @@ export const ProcessSection = () => {
   ];
 
   return (
-    <section className="py-[clamp(64px,9vw,120px)]">
-      <div className="wrap">
-        <Eyebrow>How a project runs</Eyebrow>
-        <h2 className="heading-display text-[clamp(2rem,4.2vw,3.2rem)] mt-[14px] max-w-[20ch]">
+    <section className="py-[clamp(64px,9vw,120px)] bg-palm text-on-palm">
+      <ScrollReveal className="wrap">
+        <div className="reveal">
+          <Eyebrow className="!text-white">How a project runs</Eyebrow>
+        </div>
+        <h2 className="heading-display text-[clamp(2rem,4.2vw,3.2rem)] mt-[14px] max-w-[20ch] reveal delay-1">
           Four stages, one accountable team.
         </h2>
-        <div className="grid grid-cols-4 max-[860px]:grid-cols-2 max-[480px]:grid-cols-1 gap-0 max-[860px]:gap-x-5 max-[860px]:gap-y-3 mt-12 border-t-2 border-palm">
+
+        {/* Animated Process Flow Divider */}
+        <div className="relative mt-12 mb-2 reveal delay-2">
+          <div className="h-[3px] w-full rounded-full animated-process-line" />
+        </div>
+
+        <div className="grid grid-cols-4 max-[860px]:grid-cols-2 max-[480px]:grid-cols-1 gap-0 max-[860px]:gap-x-5 max-[860px]:gap-y-3">
           {steps.map((s, idx) => (
             <div
               key={idx}
-              className="pt-6 pr-[22px] max-[860px]:pr-0 grid gap-[10px] content-start"
+              className={`pt-6 pr-[22px] max-[860px]:pr-0 grid gap-[10px] content-start reveal delay-${idx + 1}`}
             >
-              <span className="font-mono text-[0.8rem] text-palm-2 tracking-[0.08em]">
+              <span className="font-mono text-[0.8rem] text-white tracking-[0.08em] font-medium">
                 {s.num}
               </span>
-              <h3 className="heading-display text-[1.45rem]">{s.title}</h3>
-              <p className="text-ink-2 text-[0.96rem]">{s.desc}</p>
+              <h3 className="heading-display text-[1.45rem] text-on-palm">
+                {s.title}
+              </h3>
+              <p className="text-on-palm-2 text-[0.96rem]">{s.desc}</p>
             </div>
           ))}
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 };
-
