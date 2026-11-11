@@ -2,6 +2,7 @@ import { Header } from "@/components/global/Header";
 import { Footer } from "@/components/global/Footer";
 import { HeroSection } from "@/components/home/HeroSection";
 import { FiguresSection } from "@/components/home/FiguresSection";
+import { CertificationsSection } from "@/components/home/CertificationsSection";
 import { AboutSection } from "@/components/home/AboutSection";
 import { FounderSection } from "@/components/home/FounderSection";
 import { ServicesSection } from "@/components/home/ServicesSection";
@@ -12,6 +13,7 @@ import { GroupSection } from "@/components/home/GroupSection";
 import { BlogSection } from "@/components/home/BlogSection";
 import { FaqSection } from "@/components/home/FaqSection";
 import { ContactSection } from "@/components/home/ContactSection";
+import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 
 export default function Home() {
   return (
@@ -20,6 +22,7 @@ export default function Home() {
       <main id="top">
         <HeroSection />
         <FiguresSection />
+        <CertificationsSection />
         <AboutSection />
         <FounderSection />
         <ServicesSection />
@@ -32,6 +35,7 @@ export default function Home() {
         <ContactSection />
       </main>
       <Footer />
+      <FloatingWhatsApp />
     </>
   );
 }

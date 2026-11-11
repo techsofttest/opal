@@ -52,6 +52,7 @@
 
   html {
     scroll-behavior: smooth;
+    overflow-x: clip;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -67,6 +68,9 @@
     font-size: 17px;
     line-height: 1.6;
     margin: 0;
+    overflow-x: clip;
+    position: relative;
+    width: 100%;
   }
 
   body::before {
@@ -265,7 +269,7 @@
 
   .reveal.revealed {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
 
   /* Stagger delays for sibling elements */

@@ -22,7 +22,7 @@ export const HeroSection = () => {
           </p>
           <div className="flex flex-wrap gap-3 mt-8 reveal delay-3">
             <a className="btn btn-orange" href="#contact">
-              Request a site visit
+              Book a Free Site Visit
             </a>
             <a className="btn btn-ghost" href="#services">
               Our services

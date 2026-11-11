@@ -43,7 +43,8 @@ export const ContactSection = () => {
 
   return (
     <section id="contact" className="bg-palm text-on-palm py-[clamp(64px,9vw,120px)]">
-      <ScrollReveal className="wrap grid grid-cols-[1fr_1.1fr] max-[860px]:grid-cols-1 gap-[clamp(32px,6vw,72px)]">
+      <ScrollReveal className="wrap grid grid-cols-[1fr_1.1fr] max-[860px]:grid-cols-1 gap-[clamp(32px,6vw,72px)] items-start">
+        {/* Left Column: Contact Details & Location Map */}
         <div className="min-w-0">
           <div className="reveal">
             <Eyebrow className="!text-leaf">Contact</Eyebrow>
@@ -90,150 +91,167 @@ export const ContactSection = () => {
                 <br />
                 Dubai, United Arab Emirates
               </address>
+              <div className="mt-3 rounded-[6px] overflow-hidden border border-line/30 shadow-inner">
+                <iframe
+                  title="Opal Landscaping Location"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.431057404285!2d55.31291887609279!3d25.22240983068593!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5d34214f5263%3A0xe54d6d63fa28ba35!2sAl%20Makhawi%20Building!5e0!3m2!1sen!2sae!4v1700000000000!5m2!1sen!2sae"
+                  width="100%"
+                  height="160"
+                  style={{ border: 0 }}
+                  allowFullScreen={false}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full block filter contrast-[1.05]"
+                />
+              </div>
             </div>
           </div>
         </div>
 
-        <form
-          id="quote"
-          noValidate
-          onSubmit={handleFormSubmit}
-          className="bg-paper text-ink rounded-[4px] p-[clamp(20px,3vw,32px)] grid gap-4 min-w-0 reveal delay-2"
-        >
-          <div className="grid grid-cols-2 max-[520px]:grid-cols-1 gap-4 min-w-0">
-            <label
-              htmlFor="q-name"
-              className="grid gap-[6px] text-[0.85rem] font-semibold text-ink-2 min-w-0"
-            >
-              Name
-              <input
-                id="q-name"
-                required
-                autoComplete="name"
-                value={formData.name}
-                onChange={(e) =>
-                  setFormData({ ...formData, name: e.target.value })
-                }
-                className="min-w-0 font-inherit text-[1rem] p-[12px_14px] border border-line rounded-[6px] bg-paper text-ink w-full focus:outline-2 focus:outline-water focus:outline-offset-0 focus:border-transparent"
-              />
-            </label>
-            <label
-              htmlFor="q-phone"
-              className="grid gap-[6px] text-[0.85rem] font-semibold text-ink-2 min-w-0"
-            >
-              Phone
-              <input
-                id="q-phone"
-                type="tel"
-                required
-                autoComplete="tel"
-                value={formData.phone}
-                onChange={(e) =>
-                  setFormData({ ...formData, phone: e.target.value })
-                }
-                className="min-w-0 font-inherit text-[1rem] p-[12px_14px] border border-line rounded-[6px] bg-paper text-ink w-full focus:outline-2 focus:outline-water focus:outline-offset-0 focus:border-transparent"
-              />
-            </label>
-          </div>
-
-          <div className="grid grid-cols-2 max-[520px]:grid-cols-1 gap-4 min-w-0">
-            <label
-              htmlFor="q-type"
-              className="grid gap-[6px] text-[0.85rem] font-semibold text-ink-2 min-w-0"
-            >
-              Project type
-              <select
-                id="q-type"
-                value={formData.type}
-                onChange={(e) =>
-                  setFormData({ ...formData, type: e.target.value })
-                }
-                className="min-w-0 font-inherit text-[1rem] p-[12px_14px] border border-line rounded-[6px] bg-paper text-ink w-full focus:outline-2 focus:outline-water focus:outline-offset-0 focus:border-transparent"
-              >
-                <option>Landscape design &amp; build</option>
-                <option>Swimming pool</option>
-                <option>Irrigation</option>
-                <option>Maintenance contract</option>
-                <option>Hardscape</option>
-                <option>Indoor plants</option>
-              </select>
-            </label>
-            <label
-              htmlFor="q-area"
-              className="grid gap-[6px] text-[0.85rem] font-semibold text-ink-2 min-w-0"
-            >
-              Location / community
-              <input
-                id="q-area"
-                placeholder="e.g. Arabian Ranches"
-                value={formData.area}
-                onChange={(e) =>
-                  setFormData({ ...formData, area: e.target.value })
-                }
-                className="min-w-0 font-inherit text-[1rem] p-[12px_14px] border border-line rounded-[6px] bg-paper text-ink w-full focus:outline-2 focus:outline-water focus:outline-offset-0 focus:border-transparent"
-              />
-            </label>
-          </div>
-
-          <label
-            htmlFor="q-msg"
-            className="grid gap-[6px] text-[0.85rem] font-semibold text-ink-2 min-w-0"
+        {/* Right Column: Normal Sized, Sticky Form */}
+        <div className="min-w-0 self-start md:sticky md:top-28 z-10">
+          <form
+            id="quote"
+            noValidate
+            onSubmit={handleFormSubmit}
+            className="bg-paper text-ink font-sans rounded-[8px] p-6 sm:p-7 shadow-lg border border-line flex flex-col gap-4 w-full max-w-[540px]"
           >
-            Project details
-            <textarea
-              id="q-msg"
-              placeholder="Approximate area, what you'd like, timeline"
-              value={formData.msg}
-              onChange={(e) =>
-                setFormData({ ...formData, msg: e.target.value })
-              }
-              className="min-w-0 font-inherit text-[1rem] p-[12px_14px] border border-line rounded-[6px] bg-paper text-ink w-full min-h-[110px] resize-y focus:outline-2 focus:outline-water focus:outline-offset-0 focus:border-transparent"
-            ></textarea>
-          </label>
-
-          <button
-            className="btn btn-orange justify-self-start"
-            type="submit"
-          >
-            Prepare my enquiry
-          </button>
-
-          {showOut && (
-            <div className="grid gap-[10px] p-4 bg-sand rounded-[6px] text-[0.92rem]">
-              <span>
-                Your enquiry is ready. Send it on WhatsApp or copy it into an
-                email to info@opallandscaping.com.
-              </span>
-              <pre
-                id="outText"
-                className="m-0 whitespace-pre-wrap font-mono text-[0.82rem] text-ink"
+            <div className="grid grid-cols-2 max-[520px]:grid-cols-1 gap-4">
+              <label
+                htmlFor="q-name"
+                className="flex flex-col gap-1.5 text-[0.85rem] font-semibold text-ink-2 font-sans"
               >
-                {outText}
-              </pre>
-              <div className="flex flex-wrap gap-2">
-                <a
-                  className="btn btn-orange !py-[0.6em] !px-[1em] !text-[0.88rem]"
-                  id="waLink"
-                  href={`https://wa.me/971509040480?text=${encodeURIComponent(
-                    outText
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Open WhatsApp
-                </a>
-                <button
-                  className="btn btn-ghost !py-[0.6em] !px-[1em] !text-[0.88rem]"
-                  type="button"
-                  id="copyBtn"
-                  onClick={handleCopy}
-                >
-                  {copied ? "Copied" : "Copy text"}
-                </button>
-              </div>
+                Name
+                <input
+                  id="q-name"
+                  required
+                  autoComplete="name"
+                  value={formData.name}
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
+                  className="font-sans text-[0.95rem] py-2.5 px-3.5 border border-line rounded-[6px] bg-white text-ink w-full focus:outline-2 focus:outline-water focus:border-transparent transition-all"
+                />
+              </label>
+              <label
+                htmlFor="q-phone"
+                className="flex flex-col gap-1.5 text-[0.85rem] font-semibold text-ink-2 font-sans"
+              >
+                Phone
+                <input
+                  id="q-phone"
+                  type="tel"
+                  required
+                  autoComplete="tel"
+                  value={formData.phone}
+                  onChange={(e) =>
+                    setFormData({ ...formData, phone: e.target.value })
+                  }
+                  className="font-sans text-[0.95rem] py-2.5 px-3.5 border border-line rounded-[6px] bg-white text-ink w-full focus:outline-2 focus:outline-water focus:border-transparent transition-all"
+                />
+              </label>
             </div>
-          )}
-        </form>
+
+            <div className="grid grid-cols-2 max-[520px]:grid-cols-1 gap-4">
+              <label
+                htmlFor="q-type"
+                className="flex flex-col gap-1.5 text-[0.85rem] font-semibold text-ink-2 font-sans"
+              >
+                Project type
+                <select
+                  id="q-type"
+                  value={formData.type}
+                  onChange={(e) =>
+                    setFormData({ ...formData, type: e.target.value })
+                  }
+                  className="font-sans text-[0.95rem] py-2.5 px-3.5 border border-line rounded-[6px] bg-white text-ink w-full focus:outline-2 focus:outline-water focus:border-transparent transition-all cursor-pointer"
+                >
+                  <option>Landscape design &amp; build</option>
+                  <option>Swimming pool</option>
+                  <option>Irrigation</option>
+                  <option>Maintenance contract</option>
+                  <option>Hardscape</option>
+                  <option>Indoor plants</option>
+                </select>
+              </label>
+              <label
+                htmlFor="q-area"
+                className="flex flex-col gap-1.5 text-[0.85rem] font-semibold text-ink-2 font-sans"
+              >
+                Location / community
+                <input
+                  id="q-area"
+                  placeholder="e.g. Arabian Ranches"
+                  value={formData.area}
+                  onChange={(e) =>
+                    setFormData({ ...formData, area: e.target.value })
+                  }
+                  className="font-sans text-[0.95rem] py-2.5 px-3.5 border border-line rounded-[6px] bg-white text-ink w-full focus:outline-2 focus:outline-water focus:border-transparent transition-all"
+                />
+              </label>
+            </div>
+
+            <label
+              htmlFor="q-msg"
+              className="flex flex-col gap-1.5 text-[0.85rem] font-semibold text-ink-2 font-sans"
+            >
+              Project details
+              <textarea
+                id="q-msg"
+                rows={3}
+                placeholder="Approximate area, what you'd like, timeline"
+                value={formData.msg}
+                onChange={(e) =>
+                  setFormData({ ...formData, msg: e.target.value })
+                }
+                className="font-sans text-[0.95rem] py-2.5 px-3.5 border border-line rounded-[6px] bg-white text-ink w-full min-h-[90px] resize-y focus:outline-2 focus:outline-water focus:border-transparent transition-all"
+              ></textarea>
+            </label>
+
+            <button
+              className="btn btn-orange justify-self-start self-start mt-1"
+              type="submit"
+            >
+              Prepare my enquiry
+            </button>
+
+            {showOut && (
+              <div className="flex flex-col gap-2.5 p-4 bg-sand rounded-[6px] text-[0.92rem] border border-line/40">
+                <span className="text-ink font-medium">
+                  Your enquiry is ready. Send it on WhatsApp or copy it into an
+                  email to info@opallandscaping.com.
+                </span>
+                <pre
+                  id="outText"
+                  className="m-0 whitespace-pre-wrap font-mono text-[0.82rem] text-ink bg-white/70 p-2.5 rounded border border-line/30"
+                >
+                  {outText}
+                </pre>
+                <div className="flex flex-wrap gap-2 mt-1">
+                  <a
+                    className="btn btn-orange !py-[0.55em] !px-[1em] !text-[0.88rem]"
+                    id="waLink"
+                    href={`https://wa.me/971509040480?text=${encodeURIComponent(
+                      outText
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Open WhatsApp
+                  </a>
+                  <button
+                    className="btn btn-ghost !py-[0.55em] !px-[1em] !text-[0.88rem]"
+                    type="button"
+                    id="copyBtn"
+                    onClick={handleCopy}
+                  >
+                    {copied ? "Copied" : "Copy text"}
+                  </button>
+                </div>
+              </div>
+            )}
+          </form>
+        </div>
       </ScrollReveal>
     </section>
   );

@@ -1,43 +1,21 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { BLOG_POSTS, BlogPost } from "@/lib/blogData";
 
-export const BlogSection = () => {
-  const posts = [
-    {
-      id: 1,
-      title: "Sustainable Landscaping in Dubai: Native Plants That Beat the Summer Heat",
-      excerpt:
-        "How ghaf trees, bougainvillea, and drought-tolerant desert flora thrive in 48 °C climates while dramatically reducing water demand.",
-      date: "OCT 2026",
-      readTime: "4 MIN READ",
-      category: "Sustainability",
-      image: "/img/bougainvillea-hedge.jpg",
-      alt: "Dense bougainvillea hedge flowering in Dubai climate",
-    },
-    {
-      id: 2,
-      title: "Smart Irrigation & Drip Automation: Cutting Outdoor Water Consumption by 40%",
-      excerpt:
-        "Modern flow sensors, sub-surface drip lines, and night-cycle controllers engineered to safeguard Dubai's precious water resources.",
-      date: "SEP 2026",
-      readTime: "5 MIN READ",
-      category: "Irrigation",
-      image: "/img/team-planting.jpg",
-      alt: "Landscaping team installing automated drip irrigation",
-    },
-    {
-      id: 3,
-      title: "Architectural Hardscaping & Pool Decks: Heat-Reflective Materials Guide",
-      excerpt:
-        "Selecting pavers, stone inlays, and shaded pergolas that remain cool to the touch throughout scorching summer afternoons.",
-      date: "AUG 2026",
-      readTime: "6 MIN READ",
-      category: "Design & Build",
-      image: "/img/palm-pool.jpg",
-      alt: "Reflective pool deck with palm islands and pavers",
-    },
-  ];
+export { BLOG_POSTS, type BlogPost };
+
+interface BlogSectionProps {
+  showAll?: boolean;
+  showAllButton?: boolean;
+}
+
+export const BlogSection = ({
+  showAll = false,
+  showAllButton = true,
+}: BlogSectionProps) => {
+  const posts = showAll ? BLOG_POSTS : BLOG_POSTS.slice(0, 3);
 
   return (
     <section id="blogs" className="py-[clamp(64px,9vw,120px)] bg-sand">
@@ -48,15 +26,19 @@ export const BlogSection = () => {
               <Eyebrow>Insights &amp; Articles</Eyebrow>
             </div>
             <h2 className="heading-display text-[clamp(2rem,4.2vw,3.2rem)] reveal delay-1">
-              Latest thoughts on desert landscaping, design &amp; care.
+              {showAll
+                ? "All insights & technical articles on desert landscaping."
+                : "Latest thoughts on desert landscaping, design & care."}
             </h2>
           </div>
-          <a
-            className="btn btn-ghost hover:bg-sand-2 text-ink font-semibold reveal delay-2"
-            href="#contact"
-          >
-            All articles
-          </a>
+          {showAllButton && (
+            <Link
+              className="btn btn-ghost hover:bg-sand-2 text-ink font-semibold reveal delay-2"
+              href="/blogs"
+            >
+              All articles
+            </Link>
+          )}
         </div>
 
         <div className="grid grid-cols-3 max-[860px]:grid-cols-1 gap-7">
@@ -86,7 +68,9 @@ export const BlogSection = () => {
                     <span>{post.readTime}</span>
                   </div>
                   <h3 className="heading-display text-[1.3rem] leading-snug group-hover:text-palm transition-colors">
-                    {post.title}
+                    <Link href={`/blogs/${post.slug}`} className="hover:underline">
+                      {post.title}
+                    </Link>
                   </h3>
                   <p className="mt-3 text-ink-2 text-[0.94rem] leading-relaxed line-clamp-3">
                     {post.excerpt}
@@ -94,7 +78,10 @@ export const BlogSection = () => {
                 </div>
 
                 <div className="mt-6 pt-4 border-t border-line flex items-center justify-between">
-                  <span className="font-semibold text-[0.88rem] text-palm group-hover:text-brand-orange flex items-center gap-1.5 transition-colors">
+                  <Link
+                    href={`/blogs/${post.slug}`}
+                    className="font-semibold text-[0.88rem] text-palm group-hover:text-brand-orange flex items-center gap-1.5 transition-colors"
+                  >
                     Read article
                     <svg
                       className="w-4 h-4 transition-transform group-hover:translate-x-1"
@@ -109,7 +96,7 @@ export const BlogSection = () => {
                         d="M14 5l7 7m0 0l-7 7m7-7H3"
                       />
                     </svg>
-                  </span>
+                  </Link>
                 </div>
               </div>
             </article>

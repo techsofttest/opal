@@ -1,7 +1,53 @@
+"use client";
+
+import { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const SectorsSection = () => {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    {
+      loop: true,
+      align: "center",
+      skipSnaps: false,
+    },
+    [
+      Autoplay({
+        delay: 2500,
+        stopOnInteraction: false,
+        stopOnMouseEnter: true,
+      }),
+    ]
+  );
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    const snapIndex = emblaApi.selectedScrollSnap();
+    // Map the continuous snap index (0-7) smoothly into 3 indicator dots (0, 1, 2)
+    setSelectedIndex(snapIndex % 3);
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
+    return () => {
+      emblaApi.off("select", onSelect);
+      emblaApi.off("reInit", onSelect);
+    };
+  }, [emblaApi, onSelect]);
+
+  const scrollTo = (dotIndex: number) => {
+    if (!emblaApi) return;
+    emblaApi.scrollTo(dotIndex);
+  };
+
   const sectors = [
     {
       title: "Government & free zones",
@@ -25,14 +71,16 @@ export const SectorsSection = () => {
     },
   ];
 
-  const clients = [
-    "DIEZ",
-    "Dubai Holding",
-    "KOJ",
-    "Sheraton",
-    "Kempinski",
-    "Hyatt Regency",
-    "Green Community",
+  // 4 client images repeated to form a seamless infinite loop showing 3 items at a time
+  const clientLogos = [
+    { src: "/clients/client-1.webp", alt: "Client logo 1" },
+    { src: "/clients/client-2.webp", alt: "Client logo 2" },
+    { src: "/clients/client-3.webp", alt: "Client logo 3" },
+    { src: "/clients/client-4.webp", alt: "Client logo 4" },
+    { src: "/clients/client-1.webp", alt: "Client logo 1 copy" },
+    { src: "/clients/client-2.webp", alt: "Client logo 2 copy" },
+    { src: "/clients/client-3.webp", alt: "Client logo 3 copy" },
+    { src: "/clients/client-4.webp", alt: "Client logo 4 copy" },
   ];
 
   return (
@@ -49,6 +97,7 @@ export const SectorsSection = () => {
             </h2>
           </div>
         </div>
+
         <div className="grid grid-cols-2 max-[860px]:grid-cols-1 gap-5 mt-11">
           {sectors.map((sec, idx) => (
             <div
@@ -63,20 +112,61 @@ export const SectorsSection = () => {
             </div>
           ))}
         </div>
-        <div className="mt-10 pt-7 border-t border-line grid gap-[18px]">
+
+        {/* Meet Our Clients Section */}
+        <div className="mt-14 pt-10 border-t border-line flex flex-col items-center text-center">
           <div className="reveal">
-            <Eyebrow>Selected clients</Eyebrow>
+            <Eyebrow>Meet Our Clients</Eyebrow>
           </div>
-          <ul className="flex flex-wrap gap-x-[14px] gap-y-3 m-0 p-0 list-none reveal delay-1">
-            {clients.map((client) => (
-              <li
-                key={client}
-                className="font-display text-[clamp(1.15rem,2vw,1.45rem)] text-ink px-[18px] py-[10px] border border-line rounded-[4px] bg-sand"
-              >
-                {client}
-              </li>
-            ))}
-          </ul>
+
+          {/* Continuous Embla Carousel: 3 images at a time, extra large, centered, no border, no shadow */}
+          <div className="reveal delay-1 w-full max-w-7xl mx-auto mt-6">
+            <div
+              className="overflow-hidden py-10 cursor-grab active:cursor-grabbing"
+              ref={emblaRef}
+            >
+              <div className="flex -ml-6 sm:-ml-10 items-center">
+                {clientLogos.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="flex-[0_0_100%] sm:flex-[0_0_50%] md:flex-[0_0_33.333%] min-w-0 pl-6 sm:pl-10 flex items-center justify-center"
+                  >
+                    <div className="relative h-44 sm:h-56 md:h-64 lg:h-72 w-full max-w-[420px] flex items-center justify-center p-4">
+                      <Image
+                        src={item.src}
+                        alt={item.alt}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-contain"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Three navigation indicators */}
+            <div
+              className="flex justify-center items-center gap-3 mt-6"
+              role="tablist"
+              aria-label="Client carousel indicators"
+            >
+              {[0, 1, 2].map((dotIdx) => (
+                <button
+                  key={dotIdx}
+                  type="button"
+                  onClick={() => scrollTo(dotIdx)}
+                  className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                    selectedIndex === dotIdx
+                      ? "w-8 bg-palm"
+                      : "w-2.5 bg-line hover:bg-ink-2"
+                  }`}
+                  aria-label={`Go to slide group ${dotIdx + 1}`}
+                  aria-pressed={selectedIndex === dotIdx}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </ScrollReveal>
     </section>
