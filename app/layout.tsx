@@ -9,6 +9,9 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://opallandscaping.com"
+  ),
   title: "Opal Landscaping",
   description:
     "Opal Landscaping LLC — landscape design, construction, maintenance, irrigation and swimming pools in Dubai since 2007.",
