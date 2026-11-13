@@ -29,10 +29,10 @@ export const FiguresSection = () => {
           </span>
         </div>
         <div className="reveal delay-3">
-          <b className="block font-display font-normal text-[clamp(2.2rem,4.5vw,3.4rem)] leading-none tabular-nums">
+          <b className="block font-display font-normal text-[clamp(2.2rem,4.5vw,3rem)] leading-none tabular-nums">
             AED 550M+
           </b>
-          <span className="block mt-2 text-on-palm-2 text-[0.92rem] max-w-[22ch]">
+          <span className="block mt-2 text-on-palm-2 text-[0.90rem] max-w-[25ch]">
             in completed projects since 2007
           </span>
         </div>

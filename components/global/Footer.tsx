@@ -35,14 +35,14 @@ export const Footer = () => {
               </div>
             </Link>
             <p className="text-[0.82rem] text-ink-2">
-              © 2026 Opal Landscaping LLC · A member of RC Group
+              © 2026 Opal Landscaping LLC 
             </p>
           </div>
 
           {/* Verification & Trust Badges */}
           <div className="flex flex-wrap items-center gap-4 sm:gap-6">
             <a
-              href="https://www.google.com/maps/search/?api=1&query=Opal+Landscaping+LLC+Dubai"
+              href="https://share.google/7tHx42ybaLgGtLjyV"
               target="_blank"
               rel="noopener noreferrer"
               className="relative w-28 sm:w-32 h-14 sm:h-16 transition-transform duration-200 hover:scale-105"

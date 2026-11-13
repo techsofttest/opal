@@ -16,7 +16,7 @@ export const FounderSection = () => {
             className="object-cover object-top"
           />
           <figcaption className="absolute left-[14px] right-[14px] bottom-[14px] flex justify-between gap-[10px] font-mono text-[0.7rem] tracking-[0.08em] text-on-palm uppercase [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] z-10">
-            <span>Mr. Ramachandran Nair</span>
+            {/* <span>Mr. Ramachandran Nair</span> */}
           </figcaption>
         </figure>
 
