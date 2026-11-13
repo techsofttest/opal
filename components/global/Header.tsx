@@ -22,19 +22,27 @@ export const Header = () => {
     <header className="sticky top-[env(safe-area-inset-top,0px)] z-50 bg-white backdrop-blur-[10px] border-b border-line">
       <div className="wrap relative flex items-center justify-between gap-4 h-[84px]">
         <Link
-          className="relative z-10 flex items-center self-start no-underline pt-2"
+          className="relative z-10 flex items-center no-underline py-2"
           href="/"
           aria-label="Opal Landscaping home"
         >
-          <div className="transition-transform duration-200 hover:scale-[1.02]">
+          <div className="flex items-center gap-3 transition-transform duration-200 hover:scale-[1.02]">
             <Image
-              src="/logo/logo-v2.png"
+              src="/logo/logo.jpeg"
               alt="Opal Landscaping Logo"
-              width={200}
-              height={67}
+              width={70}
+              height={70}
               priority
-              className="h-12 sm:h-19 w-auto object-contain shrink-0"
+              className="h-12 sm:h-20 w-auto object-contain shrink-0"
             />
+            <div className="flex flex-col justify-center leading-none select-none">
+              <span className="font-display font-bold text-[#014c48] text-[1.45rem] sm:text-[1.85rem] tracking-[0.03em] leading-[1]">
+                OPAL
+              </span>
+              <span className="font-display font-bold text-[#b48816] text-[0.62rem] sm:text-[0.76rem] tracking-[0.24em] mt-1 uppercase leading-[1]">
+                LANDSCAPING LLC
+              </span>
+            </div>
           </div>
         </Link>
 

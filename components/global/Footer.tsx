@@ -4,19 +4,35 @@ import { FaInstagram, FaLinkedinIn, FaWhatsapp } from "react-icons/fa6";
 
 export const Footer = () => {
   return (
-    <footer className="bg-paper border-t border-line py-12 text-[0.88rem] text-ink-2">
+    <footer className="bg-white border-t border-line py-12 text-[0.88rem] text-ink-2">
       <div className="wrap flex flex-col gap-8">
         {/* Top / Badges Row */}
         <div className="flex flex-wrap items-center justify-between gap-6 pb-8 border-b border-line">
           {/* Logo & Copyright */}
           <div className="flex flex-col gap-2">
-            <Link href="/" className="relative w-50 h-16 block">
-              <Image
-                src="/logo/logo-v2.png"
-                alt="Opal Landscaping"
-                fill
-                className="object-contain object-left"
-              />
+            <Link
+              className="relative z-10 flex items-center no-underline py-2"
+              href="/"
+              aria-label="Opal Landscaping home"
+            >
+              <div className="flex items-center gap-3 transition-transform duration-200 hover:scale-[1.02]">
+                <Image
+                  src="/logo/logo.jpeg"
+                  alt="Opal Landscaping Logo"
+                  width={70}
+                  height={70}
+                  priority
+                  className="h-12 sm:h-20 w-auto object-contain shrink-0"
+                />
+                <div className="flex flex-col justify-center leading-none select-none">
+                  <span className="font-display font-bold text-[#014c48] text-[1.45rem] sm:text-[1.85rem] tracking-[0.03em] leading-[1]">
+                    OPAL
+                  </span>
+                  <span className="font-display font-bold text-[#b48816] text-[0.62rem] sm:text-[0.76rem] tracking-[0.24em] mt-1 uppercase leading-[1]">
+                    LANDSCAPING LLC
+                  </span>
+                </div>
+              </div>
             </Link>
             <p className="text-[0.82rem] text-ink-2">
               © 2026 Opal Landscaping LLC · A member of RC Group
