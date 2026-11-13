@@ -35,7 +35,7 @@ export default function Home() {
         <ContactSection />
       </main>
       <Footer />
-      <FloatingWhatsApp />
+      {/* <FloatingWhatsApp /> */}
     </>
   );
 }
