@@ -24,7 +24,7 @@ export function RelatedService({ posts }: {posts?:Blog[]}){
             </h2>
           </div>
           <Link
-            href="/blogs"
+            href="/services"
             className="btn btn-ghost hover:bg-sand-2 text-ink text-[0.88rem]"
           >
             View all
@@ -53,13 +53,13 @@ export function RelatedService({ posts }: {posts?:Blog[]}){
               <div className="p-5 flex-1 flex flex-col justify-between">
                 <div>
                   <h3 className="heading-display text-[1.15rem] leading-snug group-hover:text-palm transition-colors">
-                    <Link href={`/blogs/${related.slug}`}>
+                    <Link href={`/services/${related.slug}`}>
                       {related.title}
                     </Link>
                   </h3>
                 </div>
                 <Link
-                  href={`/blogs/${related.slug}`}
+                  href={`/services/${related.slug}`}
                   className="mt-4 pt-3 text-[0.85rem] font-semibold text-palm group-hover:text-brand-orange flex items-center gap-1"
                 >
                  Learn more →

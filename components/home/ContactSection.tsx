@@ -9,6 +9,7 @@ export function ContactSection (){
   
   const { layoutData } = useLayoutData();
   const contact = layoutData?.contact;
+  const services = layoutData?.service || [];
 const [formData, setFormData] = useState({
   name: "",
   phone: "",
@@ -253,13 +254,8 @@ Please contact me to arrange a site visit.`;
                     setFormData({ ...formData, type: e.target.value })
                   }
                   className="font-sans text-[0.95rem] py-2.5 px-3.5 border border-line rounded-[6px] bg-white text-ink w-full focus:outline-2 focus:outline-water focus:border-transparent transition-all cursor-pointer"
-                >
-                  <option>Landscape design &amp; build</option>
-                  <option>Swimming pool</option>
-                  <option>Irrigation</option>
-                  <option>Maintenance contract</option>
-                  <option>Hardscape</option>
-                  <option>Indoor plants</option>
+                ><option value="" disabled> Select a project type</option>
+                {services.map((sub) => ( <option key={sub.id} value={sub.title}>{sub.title}</option> ))}
                 </select>
               </label>
               <label
