@@ -22,6 +22,7 @@ interface Contact {
 }
 interface LayoutResponse {
   contact: Contact | null;
+  address2:string | null;
   service:{
     id:number,
     title:string,
@@ -57,6 +58,7 @@ export function LayoutProvider({ children }: { children: ReactNode }) {
       .then((layoutRes) => {
         setLayoutData({
           service: layoutRes.service ?? [],
+          address2: layoutRes.address2 ?? null,
           contact: layoutRes.contact ?? null,
         });
         setLoading(false);

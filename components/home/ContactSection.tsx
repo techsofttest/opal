@@ -9,6 +9,7 @@ export function ContactSection (){
   
   const { layoutData } = useLayoutData();
   const contact = layoutData?.contact;
+  const address2 = layoutData?.address2;
   const services = layoutData?.service || [];
 const [formData, setFormData] = useState({
   name: "",
@@ -180,6 +181,20 @@ Please contact me to arrange a site visit.`;
             [&_h2]:text-white
             [&_h2]:mb-4
             [&_h2]:mt-6 [&_h3]:heading-display [&_h3]:text-[1.4rem] [&_h3]:text-white mb-3" dangerouslySetInnerHTML={{__html:contact?.address ?? ""}} />
+             <small className="font-mono text-[0.72rem] tracking-[0.12em] uppercase text-on-palm-2">
+                Address 2
+              </small>
+              <address className="not-italic [&_p]:text-on-palm [&_p]:leading-[1.5] [&_p_strong]:text-[1.12rem]
+            [&_p_strong]:leading-relaxed
+            [&_p_strong]:text-ink
+            [&_p_strong]:font-medium
+            [&_h2]:heading-display
+            [&_h2]:text-[1.65rem]
+            sm:[&_h2]:text-[1.85rem]
+            [&_h2]:text-white
+            [&_h2]:mb-4
+            [&_h2]:mt-6 [&_h3]:heading-display [&_h3]:text-[1.4rem] [&_h3]:text-white mb-3" dangerouslySetInnerHTML={{__html:address2 ?? ""}} />
+             
               <div className="mt-3 rounded-[6px] overflow-hidden border border-line/30 shadow-inner">
                 <iframe
                   title="Opal Landscaping Location"
@@ -194,6 +209,7 @@ Please contact me to arrange a site visit.`;
                 />
               </div>
             </div>
+            
           </div>
         </div>
 
