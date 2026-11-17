@@ -8,6 +8,7 @@ import React, {
   ReactNode
 } from "react";
 
+export const dynamic = "force-dynamic";
 interface Contact {
   phone: string | null;
   instagram: string | null;
