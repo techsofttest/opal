@@ -6,8 +6,22 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-
-export const SectorsSection = () => {
+export interface WorkSection {
+  title: string;
+ subtitle: string;
+  detail: {
+      title: string;
+  icon: string;
+  option: string;
+  description: string;
+  }[];
+}
+export interface ClientItem {
+  id: number;
+  title: string;
+  image: string;
+}
+export function SectorsSection ({client,cli}:{client?:ClientItem[],cli?:WorkSection}) {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
@@ -89,26 +103,23 @@ export const SectorsSection = () => {
         <div className="flex justify-between items-end gap-6 flex-wrap mb-0">
           <div className="grid gap-[14px] max-w-[640px]">
             <div className="reveal">
-              <Eyebrow>Who we work for</Eyebrow>
+              <Eyebrow>{cli?.title}</Eyebrow>
             </div>
             <h2 className="heading-display text-[clamp(2rem,4.2vw,3.2rem)] reveal delay-1">
-              Trusted by free zones, hotels, developers and homeowners since
-              2007.
+              {cli?.subtitle}
             </h2>
           </div>
         </div>
 
         <div className="grid grid-cols-2 max-[860px]:grid-cols-1 gap-5 mt-11">
-          {sectors.map((sec, idx) => (
+          {cli?.detail.map((sec, idx) => (
             <div
               key={idx}
               className={`p-7 border border-line rounded-[4px] grid gap-3 content-start bg-paper reveal delay-${idx + 1}`}
             >
               <h3 className="heading-display text-[1.45rem]">{sec.title}</h3>
-              <p className="text-ink-2 text-[0.96rem]">{sec.desc}</p>
-              <p className="font-mono text-[0.74rem] tracking-[0.06em] text-palm-2 uppercase mt-[6px]">
-                {sec.who}
-              </p>
+              <div className="text-ink-2 text-[0.96rem]  [&_p_strong]:font-mono [&_p_strong]:text-[0.74rem] [&_p_strong]:tracking-[0.06em] [&_p_strong]:text-palm-2 [&_p_strong]:uppercase [&_p_strong]:mt-[6px]" dangerouslySetInnerHTML={{__html:sec.description}}/>
+              {/* <div className="font-mono text-[0.74rem] tracking-[0.06em] text-palm-2 uppercase mt-[6px]" dangerouslySetInnerHTML={{__html:sec.description}}/> */}
             </div>
           ))}
         </div>
@@ -126,15 +137,15 @@ export const SectorsSection = () => {
               ref={emblaRef}
             >
               <div className="flex -ml-6 sm:-ml-10 items-center">
-                {clientLogos.map((item, idx) => (
+                {client?.map((item, idx) => (
                   <div
                     key={idx}
                     className="flex-[0_0_100%] sm:flex-[0_0_50%] md:flex-[0_0_33.333%] min-w-0 pl-6 sm:pl-10 flex items-center justify-center"
                   >
                     <div className="relative h-44 sm:h-56 md:h-64 lg:h-72 w-full max-w-[420px] flex items-center justify-center p-4">
                       <Image
-                        src={item.src}
-                        alt={item.alt}
+                        src={item.image}
+                        alt={item.title}
                         fill
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="object-contain"

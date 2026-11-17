@@ -9,30 +9,112 @@ import { CertificationsSection } from "@/components/home/CertificationsSection";
 import { FiguresSection } from "@/components/home/FiguresSection";
 import { GroupSection } from "@/components/home/GroupSection";
 
-export const metadata: Metadata = {
-  title: "About Us · Opal Landscaping LLC",
-  description:
-    "Learn about Opal Landscaping LLC, founded in Dubai in 2007 by Mr. Ramachandran Nair. Our story, values, team of 700+, and leadership.",
-};
+export interface SeoData {
+  meta_key: string;
+  meta_title: string;
+  meta_desc: string;
+}
 
-export default function AboutPage() {
+export interface DetailItem {
+  title: string;
+  icon: string;
+  option: string;
+  description: string;
+}
+
+export interface Hero {
+  title: string;
+  subtitle: string;
+  content: string;
+  detail: DetailItem[];
+  image: string;
+}
+
+export interface AboutSection {
+  title: string;
+  subtitle: string;
+  content: string;
+  detail: {
+    title: string;
+    icon: string;
+    option: string;
+    description: string;
+  }[];
+  image: string;
+}
+
+export interface GrpSection {
+  title: string;
+  subtitle: string;
+  content: string;
+  detail: DetailItem[];
+}
+
+export interface LandingPageResponse {
+  seo: SeoData;
+  hero: Hero;
+  certificate:{  title: string;
+  image: string;
+  option: string;
+  description: string;}[];
+  about: AboutSection;
+  stat:  DetailItem[];
+  grp: GrpSection;
+  founder:AboutSection;
+}
+async function getSEO(): Promise<LandingPageResponse> {
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+
+  const res = await fetch(`${baseUrl}/about`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch SEO data");
+  }
+
+  return res.json();
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  try {
+    const data = await getSEO();
+
+    return {
+      title: data?.seo?.meta_title ?? "Home",
+      description: data?.seo?.meta_desc ?? "",
+      keywords: data?.seo?.meta_key ?? "",
+    };
+  } catch (error) {
+    return {
+      title: "Home",
+    };
+  }
+}
+export default async function AboutPage() {
+  let data: LandingPageResponse | null = null;
+  
+    try {
+      data = await getSEO();
+    } catch (error) {
+      console.error("Error fetching homepage data:", error);
+    }
   return (
     <>
       <Header />
       <main id="top">
         <InnerHero
-          eyebrow="Company Profile"
-          title="Nurturing outdoor spaces across the UAE since 2007."
-          description="Opal Landscaping is the premier landscaping, irrigation, swimming pool, and grounds maintenance contractor in Dubai. Guided by social value, human wellbeing, and environmental stewardship."
-          imageSrc="/img/community-avenue.jpg"
+          eyebrow={data?.hero.title || ""}
+          title={data?.hero.subtitle || ""}
+          description={data?.hero.content || ""}
+          imageSrc={ data?.hero.image || "/img/community-avenue.jpg"}
           imageAlt="Palm tree avenue and landscaped community by Opal Landscaping"
-          badgeTag="Community Landscape · Green Community"
         />
-        <AboutSection />
-        <FounderSection />
-        <FiguresSection />
-        <CertificationsSection />
-        <GroupSection />
+        <AboutSection about={data?.about} />
+        <FounderSection  founder={data?.founder} />
+        <FiguresSection stat={data?.stat ?? []} />
+        <CertificationsSection certificate={data?.certificate ?? []} />
+        <GroupSection grp={data?.grp} />
       </main>
       <Footer />
       <FloatingWhatsApp />

@@ -2,20 +2,25 @@ import Image from "next/image";
 import Link from "next/link";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { BLOG_POSTS, BlogPost } from "@/lib/blogData";
-
-export { BLOG_POSTS, type BlogPost };
-
 interface BlogSectionProps {
   showAll?: boolean;
   showAllButton?: boolean;
+    blog:{
+    id:string;
+    slug:string;
+    title:string;
+    content:string;
+    read_time:string;
+    date:string;
+    image:string;
+  }[];
 }
 
-export const BlogSection = ({
+export function BlogSection({
   showAll = false,
-  showAllButton = true,
-}: BlogSectionProps) => {
-  const posts = showAll ? BLOG_POSTS : BLOG_POSTS.slice(0, 3);
+  showAllButton = true,blog
+}: BlogSectionProps){
+  const posts = showAll ? blog : blog.slice(0, 3);
 
   return (
     <section id="blogs" className="py-[clamp(64px,9vw,120px)] bg-sand">
@@ -50,14 +55,14 @@ export const BlogSection = ({
               <figure className="relative aspect-[16/10] overflow-hidden m-0 bg-sand-2">
                 <Image
                   src={post.image}
-                  alt={post.alt}
+                  alt={post.title}
                   fill
                   sizes="(max-width: 860px) 100vw, 33vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <span className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm text-brand-orange border border-line font-mono text-[0.7rem] uppercase tracking-wider font-semibold py-1 px-2.5 rounded-full z-10">
+                {/* <span className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm text-brand-orange border border-line font-mono text-[0.7rem] uppercase tracking-wider font-semibold py-1 px-2.5 rounded-full z-10">
                   {post.category}
-                </span>
+                </span> */}
               </figure>
 
               <div className="p-6 flex-1 flex flex-col justify-between">
@@ -65,16 +70,14 @@ export const BlogSection = ({
                   <div className="flex items-center gap-3 font-mono text-[0.74rem] text-ink-2 mb-3 tracking-wider">
                     <span>{post.date}</span>
                     <span>·</span>
-                    <span>{post.readTime}</span>
+                    <span>{post.read_time}</span>
                   </div>
                   <h3 className="heading-display text-[1.3rem] leading-snug group-hover:text-palm transition-colors">
                     <Link href={`/blogs/${post.slug}`} className="hover:underline">
                       {post.title}
                     </Link>
                   </h3>
-                  <p className="mt-3 text-ink-2 text-[0.94rem] leading-relaxed line-clamp-3">
-                    {post.excerpt}
-                  </p>
+                  <div className="mt-3 text-ink-2 text-[0.94rem] leading-relaxed line-clamp-3" dangerouslySetInnerHTML={{__html:post.content }} />
                 </div>
 
                 <div className="mt-6 pt-4 border-t border-line flex items-center justify-between">

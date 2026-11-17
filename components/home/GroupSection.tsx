@@ -1,7 +1,17 @@
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-
-export const GroupSection = () => {
+export interface Section {
+  title: string;
+ subtitle: string;
+  content: string;
+  detail: {
+      title: string;
+  icon: string;
+  option: string;
+  description: string;
+  }[];
+}
+export function GroupSection ({grp}:{grp?:Section}){
   const entities = [
     {
       name: "Opal Landscaping LLC",
@@ -49,37 +59,31 @@ export const GroupSection = () => {
     <section id="group" className="bg-sand py-[clamp(64px,9vw,120px)]">
       <ScrollReveal className="wrap">
         <div className="reveal">
-          <Eyebrow>Part of RC Group</Eyebrow>
+          <Eyebrow>{grp?.title}</Eyebrow>
         </div>
         <h2 className="heading-display text-[clamp(2rem,4.2vw,3.2rem)] mt-[14px] max-w-[22ch] reveal delay-1">
-          Backed by a group that grows its own supply chain.
+         {grp?.subtitle}
         </h2>
-        <p className="lead mt-[18px] reveal delay-2">
-          RC Group, formally constituted in 2022, connects our landscaping
-          work with nurseries, technical services and agri-trade in the UAE and
-          India.
-        </p>
+        <div className="lead mt-[18px] reveal delay-2" dangerouslySetInnerHTML={{__html:grp?.content ?? ""}} />
 
         {/* Grid with crisp divider lines matching original design */}
         <div className="mt-11 border border-line rounded-[4px] overflow-hidden shadow-sm reveal delay-2">
           <div className="grid grid-cols-4 max-[860px]:grid-cols-2 max-[480px]:grid-cols-1 bg-line gap-[1px]">
-            {entities.map((ent, idx) => (
+            {grp?.detail.map((ent, idx) => (
               <div
                 key={idx}
                 className={`p-6 grid gap-[6px] content-start ${
-                  ent.isMain
+                  0==idx
                     ? "bg-palm text-on-palm"
                     : "bg-paper text-ink"
                 }`}
               >
-                <b className="font-semibold text-[1.02rem]">{ent.name}</b>
+                <b className="font-semibold text-[1.02rem]">{ent.title}</b>
                 <span
                   className={`text-[0.92rem] leading-snug ${
-                    ent.isMain ? "text-on-palm-2" : "text-ink-2"
+                    0==idx ? "text-on-palm-2" : "text-ink-2"
                   }`}
-                >
-                  {ent.desc}
-                </span>
+                dangerouslySetInnerHTML={{__html:ent.description}}/>
               </div>
             ))}
           </div>

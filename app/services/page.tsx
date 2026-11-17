@@ -8,28 +8,96 @@ import { ProcessSection } from "@/components/home/ProcessSection";
 import { ClimateSection } from "@/components/home/ClimateSection";
 import { ContactSection } from "@/components/home/ContactSection";
 
-export const metadata: Metadata = {
-  title: "Services · Opal Landscaping LLC",
-  description:
-    "Comprehensive landscaping services: Landscape design, hardscape, softscape construction, custom swimming pools, smart irrigation, grounds maintenance, and indoor plants.",
-};
+export interface SeoData {
+  meta_key: string;
+  meta_title: string;
+  meta_desc: string;
+}
 
-export default function ServicesPage() {
+export interface DetailItem {
+  title: string;
+  icon: string;
+  option: string;
+  description: string;
+}
+
+export interface Hero {
+  title: string;
+  subtitle: string;
+  content: string;
+  detail: DetailItem[];
+  image: string;
+}
+
+export interface WorkSection {
+  title: string;
+ subtitle: string;
+  detail: DetailItem[];
+}
+
+export interface LandingPageResponse {
+  seo: SeoData;
+  hero: Hero;
+  work: WorkSection;
+  service:{id:string;
+    tag:string;
+    title:string;
+    content:string;
+  }[];
+  page:Hero
+}
+async function getSEO(): Promise<LandingPageResponse> {
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+
+  const res = await fetch(`${baseUrl}/service`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch SEO data");
+  }
+
+  return res.json();
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  try {
+    const data = await getSEO();
+
+    return {
+      title: data?.seo?.meta_title ?? "Home",
+      description: data?.seo?.meta_desc ?? "",
+      keywords: data?.seo?.meta_key ?? "",
+    };
+  } catch (error) {
+    return {
+      title: "Home",
+    };
+  }
+}
+
+export default async function ServicesPage() {
+  let data: LandingPageResponse | null = null;
+  
+    try {
+      data = await getSEO();
+    } catch (error) {
+      console.error("Error fetching homepage data:", error);
+    }
   return (
     <>
       <Header />
       <main id="top">
         <InnerHero
-          eyebrow="End-to-End Solutions"
-          title="Complete outdoor solutions for villas, hotels & communities."
-          description="From concept development and municipal authority approvals to turnkey execution, swimming pools, automated irrigation, and five-year maintenance programs."
-          imageSrc="/img/villa-pergola.jpg"
+          eyebrow={data?.hero.title || ""}
+          title={data?.hero.subtitle || ""}
+          description={data?.hero.content || ""}
+          imageSrc={data?.hero.image || ""}
           imageAlt="Private villa with bespoke pergola and garden design"
-          badgeTag="Design & Build · Private Villa"
         />
-        <ServicesSection />
-        <ProcessSection />
-        <ClimateSection />
+        <ServicesSection service={data?.service ?? []}/>
+        <ProcessSection work={data?.work}/>
+        <ClimateSection page={data?.page}/>
         <ContactSection />
       </main>
       <Footer />

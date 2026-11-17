@@ -1,8 +1,15 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { FaInstagram, FaLinkedinIn, FaWhatsapp } from "react-icons/fa6";
+import { useLayoutData } from "@/context/LayoutContext";
+import { FaFacebook } from "react-icons/fa";
 
-export const Footer = () => {
+export function Footer(){
+  
+  const { layoutData } = useLayoutData();
+  const contact = layoutData?.contact;
+             
   return (
     <footer className="bg-white border-t border-line py-12 text-[0.88rem] text-ink-2">
       <div className="wrap flex flex-col gap-8">
@@ -67,7 +74,25 @@ export const Footer = () => {
 
             <div className="relative w-14 sm:w-16 h-14 sm:h-16">
               <Image
-                src="/footer/iso.png"
+                src="/icons/iso-9001.png"
+                alt="ISO Certified Management System"
+                fill
+                className="object-contain"
+              />
+            </div>
+            
+            <div className="relative w-14 sm:w-16 h-14 sm:h-16">
+              <Image
+                src="/icons/iso-14001.png"
+                alt="ISO Certified Management System"
+                fill
+                className="object-contain"
+              />
+            </div>
+            
+            <div className="relative w-14 sm:w-16 h-14 sm:h-16">
+              <Image
+                src="/icons/iso-45001.png"
                 alt="ISO Certified Management System"
                 fill
                 className="object-contain"
@@ -77,56 +102,11 @@ export const Footer = () => {
         </div>
 
         {/* Bottom / Links & Social Media Icons */}
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <nav className="flex flex-wrap gap-5 text-[0.84rem]">
-            <Link
-              href="/about"
-              className="no-underline hover:text-ink transition-colors"
-            >
-              About Us
-            </Link>
-            <Link
-              href="/services"
-              className="no-underline hover:text-ink transition-colors"
-            >
-              Services
-            </Link>
-            <Link
-              href="/work"
-              className="no-underline hover:text-ink transition-colors"
-            >
-              Our Work
-            </Link>
-            <Link
-              href="/clients"
-              className="no-underline hover:text-ink transition-colors"
-            >
-              Clients
-            </Link>
-            <Link
-              href="/blogs"
-              className="no-underline hover:text-ink transition-colors"
-            >
-              Blogs
-            </Link>
-            <Link
-              href="/faq"
-              className="no-underline hover:text-ink transition-colors"
-            >
-              FAQ
-            </Link>
-            <Link
-              href="/contact"
-              className="no-underline hover:text-ink transition-colors"
-            >
-              Contact
-            </Link>
-          </nav>
+        <div className="flex flex-wrap items-center justify-end gap-4">
 
-          {/* Social Media Clickable Icons with react-icons */}
           <div className="flex items-center gap-3" aria-label="Social media profiles">
             <a
-              href="https://www.instagram.com/opal_landscaping_llc_uae"
+              href={contact?.instagram || ""}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
@@ -134,9 +114,17 @@ export const Footer = () => {
             >
               <FaInstagram className="w-4 h-4" aria-hidden="true" />
             </a>
-
             <a
-              href="https://www.linkedin.com/in/opal-landscaping-llc/"
+              href={contact?.facebook || ""}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="w-9 h-9 rounded-full border border-line bg-sand flex items-center justify-center text-ink-2 hover:text-[#0A66C2] hover:border-[#0A66C2]/40 transition-colors"
+            >
+              <FaFacebook className="w-4 h-4" aria-hidden="true" />
+            </a>
+            <a
+              href={contact?.linkedin || ""}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
@@ -146,7 +134,7 @@ export const Footer = () => {
             </a>
 
             <a
-              href="https://wa.me/971509040480"
+              href={`https://wa.me/${contact?.whatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="WhatsApp"

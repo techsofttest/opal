@@ -1,14 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BlogPost } from "@/lib/blogData";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 
-interface RelatedBlogsProps {
-  posts: BlogPost[];
+interface Blog {
+  id: string;
+  slug: string;
+  title: string;
+  content: string;
+  badge:string;
+  read_time: string;
+  date: string;
+  image: string;
 }
-
-export const RelatedBlogs = ({ posts }: RelatedBlogsProps) => {
-  if (posts.length === 0) return null;
+export function RelatedBlogs({ posts }: {posts?:Blog[]}){
+  if (posts?.length === 0) return null;
 
   return (
     <section className="py-16 bg-sand">
@@ -29,28 +34,28 @@ export const RelatedBlogs = ({ posts }: RelatedBlogsProps) => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {posts.map((related) => (
+          {posts?.map((related,idx) => (
             <article
-              key={related.id}
+              key={idx}
               className="bg-paper rounded-[6px] overflow-hidden flex flex-col group transition-all duration-300 hover:-translate-y-1"
             >
               <figure className="relative aspect-[16/10] overflow-hidden m-0 bg-sand-2">
                 <Image
                   src={related.image}
-                  alt={related.alt}
+                  alt={related.title}
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <span className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm text-brand-orange font-mono text-[0.68rem] uppercase tracking-wider font-semibold py-0.5 px-2.5 rounded-full z-10">
-                  {related.category}
+                  {related?.badge}
                 </span>
               </figure>
 
               <div className="p-5 flex-1 flex flex-col justify-between">
                 <div>
                   <div className="font-mono text-[0.72rem] text-ink-2 mb-2">
-                    {related.date} · {related.readTime}
+                    {related.date} · {related.read_time}
                   </div>
                   <h3 className="heading-display text-[1.15rem] leading-snug group-hover:text-palm transition-colors">
                     <Link href={`/blogs/${related.slug}`}>

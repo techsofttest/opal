@@ -3,31 +3,107 @@
 import { useState } from "react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { useLayoutData } from "@/context/LayoutContext";
 
-export const ContactSection = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    type: "Landscape design & build",
-    area: "",
-    msg: "",
-  });
+export function ContactSection (){
+  
+  const { layoutData } = useLayoutData();
+  const contact = layoutData?.contact;
+const [formData, setFormData] = useState({
+  name: "",
+  phone: "",
+  type: "Landscape design & build",
+  area: "",
+  msg: "",
+});
+
+const [loading, setLoading] = useState(false);
+const [submitStatus, setSubmitStatus] = useState<"success" | "error" | "">("");
   const [outText, setOutText] = useState("");
   const [showOut, setShowOut] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!formData.name.trim() || !formData.phone.trim()) {
-      setShowOut(true);
-      setOutText("Please add your name and phone number so we can reach you.");
-      return;
+ const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+  if (
+    !formData.name.trim() ||
+    !formData.phone.trim()
+  ) {
+    setSubmitStatus("error");
+    setOutText("Please enter your name and phone number.");
+    setShowOut(true);
+    return;
+  }
+
+  setLoading(true);
+  setShowOut(false);
+  setSubmitStatus("");
+
+  const enquiryMessage = `Hello Opal Landscaping,
+
+Name: ${formData.name.trim()}
+Phone: ${formData.phone.trim()}
+Project: ${formData.type}
+Location: ${formData.area.trim() || "-"}
+Details: ${formData.msg.trim() || "-"}
+
+Please contact me to arrange a site visit.`;
+
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/send`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          phone: formData.phone.trim(),
+          project: formData.type,
+          area: formData.area.trim(),
+          message: formData.msg.trim(),
+        }),
+      }
+    );
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      const validationMessage = result.errors
+        ? Object.values(result.errors).flat().join("\n")
+        : result.message || "Unable to send your enquiry.";
+
+      throw new Error(String(validationMessage));
     }
 
-    const msg = `Hello Opal Landscaping,\n\nName: ${formData.name.trim()}\nPhone: ${formData.phone.trim()}\nProject: ${formData.type}\nLocation: ${formData.area.trim() || "-"}\nDetails: ${formData.msg.trim() || "-"}\n\nPlease contact me to arrange a site visit.`;
-    setOutText(msg);
+    setSubmitStatus("success");
+    setOutText(enquiryMessage);
     setShowOut(true);
-  };
+
+    setFormData({
+      name: "",
+      phone: "",
+      type: "Landscape design & build",
+      area: "",
+      msg: "",
+    });
+
+  } catch (error) {
+    setSubmitStatus("error");
+    setOutText(
+      error instanceof Error
+        ? error.message
+        : "Something went wrong. Please try again."
+    );
+    setShowOut(true);
+
+  } finally {
+    setLoading(false);
+  }
+};
 
   const handleCopy = () => {
     navigator.clipboard
@@ -40,7 +116,8 @@ export const ContactSection = () => {
         setCopied(true);
       });
   };
-
+  const maplink="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.431057404285!2d55.31291887609279!3d25.22240983068593!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5d34214f5263%3A0xe54d6d63fa28ba35!2sAl%20Makhawi%20Building!5e0!3m2!1sen!2sae!4v1700000000000!5m2!1sen!2sae"
+    
   return (
     <section id="contact" className="bg-palm text-on-palm py-[clamp(64px,9vw,120px)]">
       <ScrollReveal className="wrap grid grid-cols-[1fr_1.1fr] max-[860px]:grid-cols-1 gap-[clamp(32px,6vw,72px)] items-start">
@@ -57,44 +134,55 @@ export const ContactSection = () => {
               <small className="font-mono text-[0.72rem] tracking-[0.12em] uppercase text-on-palm-2">
                 Office
               </small>
-              <p className="text-[1.1rem] select-all">+971 4 370 6747</p>
+              <a
+                href={contact?.phone || ""}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[1.1rem] no-underline select-all hover:underline">{contact?.phone}</a>
             </div>
             <div className="grid gap-1 reveal delay-3">
               <small className="font-mono text-[0.72rem] tracking-[0.12em] uppercase text-on-palm-2">
                 WhatsApp
               </small>
               <a
-                href="https://wa.me/971509040480"
+                href={`https://wa.me/${contact?.whatsapp}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[1.1rem] no-underline select-all hover:underline"
               >
-                +971 50 904 0480
+                +{contact?.whatsapp}
               </a>
             </div>
             <div className="grid gap-1 reveal delay-4">
               <small className="font-mono text-[0.72rem] tracking-[0.12em] uppercase text-on-palm-2">
                 Email
               </small>
-              <p className="text-[1.1rem] select-all">
-                info@opallandscaping.com
-              </p>
+              <a
+                href={`mailto:${contact?.email}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[1.1rem] no-underline select-all hover:underline"
+              >{contact?.email}
+              </a>
             </div>
             <div className="grid gap-1 reveal delay-5">
               <small className="font-mono text-[0.72rem] tracking-[0.12em] uppercase text-on-palm-2">
                 Address
               </small>
-              <address className="not-italic text-on-palm leading-[1.5]">
-                Office 210, 2nd Floor, Al Makhawi Building
-                <br />
-                Oud Metha Road, PO Box 191406
-                <br />
-                Dubai, United Arab Emirates
-              </address>
+              <address className="not-italic [&_p]:text-on-palm [&_p]:leading-[1.5] [&_p_strong]:text-[1.12rem]
+            [&_p_strong]:leading-relaxed
+            [&_p_strong]:text-ink
+            [&_p_strong]:font-medium
+            [&_h2]:heading-display
+            [&_h2]:text-[1.65rem]
+            sm:[&_h2]:text-[1.85rem]
+            [&_h2]:text-white
+            [&_h2]:mb-4
+            [&_h2]:mt-6 [&_h3]:heading-display [&_h3]:text-[1.4rem] [&_h3]:text-white mb-3" dangerouslySetInnerHTML={{__html:contact?.address ?? ""}} />
               <div className="mt-3 rounded-[6px] overflow-hidden border border-line/30 shadow-inner">
                 <iframe
                   title="Opal Landscaping Location"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.431057404285!2d55.31291887609279!3d25.22240983068593!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5d34214f5263%3A0xe54d6d63fa28ba35!2sAl%20Makhawi%20Building!5e0!3m2!1sen!2sae!4v1700000000000!5m2!1sen!2sae"
+                  src={contact?.map || maplink}
                   width="100%"
                   height="160"
                   style={{ border: 0 }}
@@ -208,19 +296,21 @@ export const ContactSection = () => {
               ></textarea>
             </label>
 
-            <button
-              className="btn btn-orange justify-self-start self-start mt-1"
-              type="submit"
-            >
-              Prepare my enquiry
-            </button>
+           <button
+  className="btn btn-orange justify-self-start self-start mt-1"
+  type="submit"
+  disabled={loading}
+>
+  {loading ? "Sending..." : "Send Enquiry"}
+</button>
 
             {showOut && (
               <div className="flex flex-col gap-2.5 p-4 bg-sand rounded-[6px] text-[0.92rem] border border-line/40">
-                <span className="text-ink font-medium">
-                  Your enquiry is ready. Send it on WhatsApp or copy it into an
-                  email to info@opallandscaping.com.
-                </span>
+               <span className="text-ink font-medium">
+                    {submitStatus === "success"
+                      ? "Your enquiry has been sent successfully. You can also share the details on WhatsApp."
+                      : outText}
+                  </span>
                 <pre
                   id="outText"
                   className="m-0 whitespace-pre-wrap font-mono text-[0.82rem] text-ink bg-white/70 p-2.5 rounded border border-line/30"
@@ -231,7 +321,7 @@ export const ContactSection = () => {
                   <a
                     className="btn btn-orange !py-[0.55em] !px-[1em] !text-[0.88rem]"
                     id="waLink"
-                    href={`https://wa.me/971509040480?text=${encodeURIComponent(
+                    href={`https://wa.me/${contact?.whatsapp}?text=${encodeURIComponent(
                       outText
                     )}`}
                     target="_blank"

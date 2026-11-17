@@ -1,7 +1,16 @@
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-
-export const ProcessSection = () => {
+export interface WorkSection {
+  title: string;
+ subtitle: string;
+  detail: {
+      title: string;
+  icon: string;
+  option: string;
+  description: string;
+  }[];
+}
+export function ProcessSection ({work}:{work?:WorkSection}) {
   const steps = [
     {
       num: "01 · SURVEY",
@@ -29,10 +38,10 @@ export const ProcessSection = () => {
     <section className="py-[clamp(64px,9vw,120px)] bg-palm text-on-palm">
       <ScrollReveal className="wrap">
         <div className="reveal">
-          <Eyebrow className="!text-white">How a project runs</Eyebrow>
+          <Eyebrow className="!text-white">{work?.title}</Eyebrow>
         </div>
         <h2 className="heading-display text-[clamp(2rem,4.2vw,3.2rem)] mt-[14px] max-w-[20ch] reveal delay-1">
-          Four stages, one accountable team.
+          {work?.subtitle}
         </h2>
 
         {/* Animated Process Flow Divider */}
@@ -41,18 +50,18 @@ export const ProcessSection = () => {
         </div>
 
         <div className="grid grid-cols-4 max-[860px]:grid-cols-2 max-[480px]:grid-cols-1 gap-0 max-[860px]:gap-x-5 max-[860px]:gap-y-3">
-          {steps.map((s, idx) => (
+          {work?.detail.map((s, idx) => (
             <div
               key={idx}
               className={`pt-6 pr-[22px] max-[860px]:pr-0 grid gap-[10px] content-start reveal delay-${idx + 1}`}
             >
               <span className="font-mono text-[0.8rem] text-white tracking-[0.08em] font-medium">
-                {s.num}
+                0{idx+1} . {s.title}
               </span>
               <h3 className="heading-display text-[1.45rem] text-on-palm">
-                {s.title}
+                {s.option}
               </h3>
-              <p className="text-on-palm-2 text-[0.96rem]">{s.desc}</p>
+              <div className="text-on-palm-2 text-[0.96rem]" dangerouslySetInnerHTML={{__html:s.description}} />
             </div>
           ))}
         </div>

@@ -1,63 +1,76 @@
-import { BlogPost } from "@/lib/blogData";
-import { FaCheck } from "react-icons/fa6";
 
-interface BlogContentProps {
-  post: BlogPost;
-}
-
-export const BlogContent = ({ post }: BlogContentProps) => {
+export const BlogContent = ({ post }: { post: string }) => {
   return (
     <article className="bg-paper p-7 sm:p-12 rounded-[10px]">
       <div className="prose prose-slate max-w-none text-ink">
-        <p className="text-[1.12rem] leading-relaxed text-ink font-medium mb-8 pb-6">
-          {post.content.intro}
-        </p>
+        <div
+          className="
+            [&_p]:text-ink-2
+            [&_p]:text-[1rem]
+            [&_p]:leading-relaxed
+            [&_p]:mb-4
 
-        {post.content.sections.map((section, idx) => (
-          <div key={idx} className="mb-10 last:mb-0">
-            <h2 className="heading-display text-[1.65rem] sm:text-[1.85rem] text-palm mb-4 mt-6">
-              {section.heading}
-            </h2>
-            {section.paragraphs.map((p, pIdx) => (
-              <p
-                key={pIdx}
-                className="text-ink-2 text-[1rem] leading-relaxed mb-4"
-              >
-                {p}
-              </p>
-            ))}
+            [&_p_strong]:text-[1.12rem]
+            [&_p_strong]:leading-relaxed
+            [&_p_strong]:text-ink
+            [&_p_strong]:font-medium
+            [&_h2]:heading-display
+            [&_h2]:text-[1.65rem]
+            sm:[&_h2]:text-[1.85rem]
+            [&_h2]:text-palm
+            [&_h2]:mb-4
+            [&_h2]:mt-6
+            [&_h3]:heading-display [&_h3]:text-[1.4rem] [&_h3]:text-palm mb-3
+            [&_hr]:hidden
 
-            {section.keyTakeaways && section.keyTakeaways.length > 0 && (
-              <div className="my-6 p-5 sm:p-6 bg-sand rounded-[8px]">
-                <div className="font-mono text-[0.75rem] uppercase tracking-wider text-palm font-bold mb-3">
-                  Engineering Highlights
-                </div>
-                <ul className="space-y-2.5 m-0 p-0 list-none">
-                  {section.keyTakeaways.map((item, kIdx) => (
-                    <li
-                      key={kIdx}
-                      className="flex items-start gap-2.5 text-[0.93rem] text-ink"
-                    >
-                      <FaCheck className="text-leaf mt-1 shrink-0 text-xs" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
-        ))}
+            [&_hr:has(+_h4)]:block
+            [&_hr:has(+_h4)]:border-0
+            [&_hr:has(+_h4)]:h-0
+            [&_hr:has(+_h4)]:mt-8
+            [&_hr:has(+_h4)]:mb-0
 
-        <div className="mt-10 pt-8">
-          <h3 className="heading-display text-[1.4rem] text-palm mb-3">
-            Conclusion &amp; Best Practice
-          </h3>
-          <p className="text-ink-2 text-[1.02rem] leading-relaxed italic">
-            {post.content.conclusion}
-          </p>
-        </div>
+            [&_h4:has(+_ul)]:bg-sand
+            [&_h4:has(+_ul)]:font-mono
+            [&_h4:has(+_ul)]:text-[0.75rem]
+            [&_h4:has(+_ul)]:uppercase
+            [&_h4:has(+_ul)]:tracking-wider
+            [&_h4:has(+_ul)]:text-palm
+            [&_h4:has(+_ul)]:font-bold
+            [&_h4:has(+_ul)]:px-6
+            [&_h4:has(+_ul)]:pt-6
+            [&_h4:has(+_ul)]:pb-3
+            [&_h4:has(+_ul)]:mb-0
+
+            [&_h4+ul]:bg-sand
+            [&_h4+ul]:px-6
+            [&_h4+ul]:pt-2
+            [&_h4+ul]:pb-6
+            [&_h4+ul]:m-0
+            [&_h4+ul]:list-none
+            [&_h4+ul]:rounded-b-[8px]
+
+            [&_ul]:space-y-2.5
+
+            [&_li]:flex
+            [&_li]:items-start
+            [&_li]:gap-2.5
+            [&_li]:text-[0.93rem]
+            [&_li]:text-ink
+
+            [&_li]:before:content-['✓']
+            [&_li]:before:text-leaf
+            [&_li]:before:font-bold
+            [&_li]:before:shrink-0
+
+            [&_h3]:heading-display
+            [&_h3]:text-[1.4rem]
+            [&_h3]:text-palm
+            [&_h3]:mt-8
+            [&_h3]:mb-3
+          "
+          dangerouslySetInnerHTML={{ __html: post }}
+        />
       </div>
     </article>
   );
 };
-

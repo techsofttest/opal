@@ -1,12 +1,17 @@
 import Link from "next/link";
-import { BlogPost } from "@/lib/blogData";
 import { FaWhatsapp, FaLinkedinIn, FaEnvelope, FaArrowLeft } from "react-icons/fa6";
 
-interface BlogHeaderProps {
-  post: BlogPost;
+interface Hero {
+  slug: string;
+  title: string;
+  badge: string;
+  desc: string;
+  read_time: string;
+  date: string;
+  image: string;
 }
 
-export const BlogHeader = ({ post }: BlogHeaderProps) => {
+export function BlogHeader ({ post }: {post?:Hero}){
   return (
     <section className="bg-palm text-on-palm pt-[clamp(32px,5vw,56px)] pb-[clamp(40px,6vw,68px)]">
       <div className="wrap max-w-[900px]">
@@ -20,19 +25,19 @@ export const BlogHeader = ({ post }: BlogHeaderProps) => {
 
         <div className="flex flex-wrap items-center gap-3 mb-4">
           <span className="bg-leaf/20 text-white font-mono text-[0.72rem] tracking-wider uppercase px-3 py-1 rounded-full font-medium">
-            {post.category}
+            {post?.badge}
           </span>
           <span className="text-on-palm-2 font-mono text-[0.78rem]">
-            {post.date} · {post.readTime}
+            {post?.date} · {post?.read_time}
           </span>
         </div>
 
         <h1 className="heading-display text-[clamp(2.1rem,4.5vw,3.6rem)] leading-[1.1] text-white">
-          {post.title}
+          {post?.title}
         </h1>
 
         <p className="lead !text-on-palm-2 mt-5 text-[1.15rem] leading-relaxed">
-          {post.excerpt}
+          {post?.desc}
         </p>
 
         <div className="mt-8 pt-6 flex items-center justify-between flex-wrap gap-4">
@@ -57,7 +62,7 @@ export const BlogHeader = ({ post }: BlogHeaderProps) => {
             </span>
             <a
               href={`https://wa.me/?text=${encodeURIComponent(
-                `${post.title} - https://opallandscaping.com/blogs/${post.slug}`
+                `${post?.title} - https://opallandscaping.com/blogs/${post?.slug}`
               )}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -68,7 +73,7 @@ export const BlogHeader = ({ post }: BlogHeaderProps) => {
             </a>
             <a
               href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-                `https://opallandscaping.com/blogs/${post.slug}`
+                `https://opallandscaping.com/blogs/${post?.slug}`
               )}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -79,9 +84,9 @@ export const BlogHeader = ({ post }: BlogHeaderProps) => {
             </a>
             <a
               href={`mailto:?subject=${encodeURIComponent(
-                post.title
+                post?.title || ""
               )}&body=${encodeURIComponent(
-                `Check out this article: https://opallandscaping.com/blogs/${post.slug}`
+                `Check out this article: https://opallandscaping.com/blogs/${post?.slug}`
               )}`}
               className="w-9 h-9 rounded-full bg-white/10 hover:bg-white hover:text-palm flex items-center justify-center text-on-palm transition-all text-sm"
               aria-label="Share via Email"

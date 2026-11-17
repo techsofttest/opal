@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-
+import {LayoutProvider} from "@/context/LayoutContext";
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -40,7 +40,9 @@ export default function RootLayout({
         <link rel="preload" as="image" href="/img/pool-aerial.jpg" />
         <link rel="preload" as="image" href="/founder/founder.jpeg" />
       </head>
-      <body>{children}</body>
+      <body>
+        <LayoutProvider>{children}</LayoutProvider>
+      </body>
     </html>
   );
 }
