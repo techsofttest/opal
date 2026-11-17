@@ -42,7 +42,7 @@ export function Footer(){
               </div>
             </Link>
             <p className="text-[0.82rem] text-ink-2">
-              © 2026 Opal Landscaping LLC 
+             Copyright @ 2026 Opal Landscaping LLC
             </p>
           </div>
 
