@@ -62,7 +62,7 @@ export function BlogHeader ({ post }: {post?:Hero}){
             </span>
             <a
               href={`https://wa.me/?text=${encodeURIComponent(
-                `${post?.title} - https://opallandscaping.com/blogs/${post?.slug}`
+                `${post?.title} - https://opal-gamma-dun.vercel.app/blogs/${post?.slug}`
               )}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -73,7 +73,7 @@ export function BlogHeader ({ post }: {post?:Hero}){
             </a>
             <a
               href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-                `https://opallandscaping.com/blogs/${post?.slug}`
+                `https://opal-gamma-dun.vercel.app/blogs/${post?.slug}`
               )}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -86,7 +86,7 @@ export function BlogHeader ({ post }: {post?:Hero}){
               href={`mailto:?subject=${encodeURIComponent(
                 post?.title || ""
               )}&body=${encodeURIComponent(
-                `Check out this article: https://opallandscaping.com/blogs/${post?.slug}`
+                `Check out this article: https://opal-gamma-dun.vercel.app/blogs/${post?.slug}`
               )}`}
               className="w-9 h-9 rounded-full bg-white/10 hover:bg-white hover:text-palm flex items-center justify-center text-on-palm transition-all text-sm"
               aria-label="Share via Email"

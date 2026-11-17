@@ -35,9 +35,9 @@ export function CertificationsSection({certificate}:{certificate:any[]}){
                   )}
                 </div>
 
-                <h3 className="font-display font-bold text-[1.18rem] sm:text-[1.25rem] text-ink mb-2 leading-snug">
+                {/* <h3 className="font-display font-bold text-[1.18rem] sm:text-[1.25rem] text-ink mb-2 leading-snug">
                   {item.title}
-                </h3>
+                </h3> */}
               </div>
 
               <div className="text-ink-2 text-[0.86rem] leading-relaxed mt-1" dangerouslySetInnerHTML={{__html:item.description}} />
