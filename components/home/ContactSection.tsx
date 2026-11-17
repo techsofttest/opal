@@ -182,7 +182,7 @@ Please contact me to arrange a site visit.`;
             [&_h2]:mb-4
             [&_h2]:mt-6 [&_h3]:heading-display [&_h3]:text-[1.4rem] [&_h3]:text-white mb-3" dangerouslySetInnerHTML={{__html:contact?.address ?? ""}} />
              <small className="font-mono text-[0.72rem] tracking-[0.12em] uppercase text-on-palm-2">
-                Address 2
+              Sharjah Address 
               </small>
               <address className="not-italic [&_p]:text-on-palm [&_p]:leading-[1.5] [&_p_strong]:text-[1.12rem]
             [&_p_strong]:leading-relaxed
