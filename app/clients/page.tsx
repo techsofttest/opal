@@ -106,7 +106,7 @@ export default async function ClientsPage() {
         <ContactSection />
       </main>
       <Footer />
-      <FloatingWhatsApp />
+      {/* <FloatingWhatsApp /> */}
     </>
   );
 }

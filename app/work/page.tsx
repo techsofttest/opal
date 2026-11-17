@@ -107,7 +107,7 @@ export default async function WorkPage() {
         <ContactSection />
       </main>
       <Footer />
-      <FloatingWhatsApp />
+      {/* <FloatingWhatsApp /> */}
     </>
   );
 }

@@ -155,10 +155,9 @@ export default async function Home() {
         <CertificationsSection certificate={data?.certificate ?? []} />
         <AboutSection about={data?.about} />
         <FounderSection  founder={data?.founder} />
-        {data?.cli && data?.client &&<SectorsSection cli={data?.cli} client={data?.client}/>}
         <WorkSection project={data?.project ?? []} />
         <ProcessSection work={data?.work}/>
-        <SectorsSection cli={data?.cli} client={data?.client}/>
+        {data?.cli && data?.client &&<SectorsSection cli={data?.cli} client={data?.client}/>}
         <GroupSection grp={data?.grp} />
         <BlogSection blog={data?.blog ?? []}/>
         <FaqSection  faq={data?.faq ?? []} />
