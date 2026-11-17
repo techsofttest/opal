@@ -94,7 +94,7 @@ export const Header = () => {
             href="/work"
             onClick={() => setMenuOpen(false)}
             className={`no-underline font-medium text-[0.95rem] transition-colors max-[860px]:py-3 max-[860px]:w-full max-[860px]:border-b max-[860px]:border-line ${
-              pathname === "/about"
+              pathname === "/work"
                 ? "text-palm font-semibold underline decoration-2 underline-offset-8"
                 : "text-ink-2 hover:text-ink"
             }`}
