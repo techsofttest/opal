@@ -40,6 +40,7 @@ export interface LandingPageResponse {
   hero: Hero;
   work: WorkSection;
   service:{id:string;
+    slug:string;
     tag:string;
     title:string;
     content:string;

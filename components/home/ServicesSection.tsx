@@ -1,5 +1,6 @@
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import Link from "next/link";
 
 export function ServicesSection ({service}:{service:any[]}){
 
@@ -22,7 +23,7 @@ export function ServicesSection ({service}:{service:any[]}){
 
         <div className="border-t border-line">
           {service.map((svc, index) => (
-            <div
+            <Link href={`/services/${svc.slug}`}
               key={index}
               className="grid grid-cols-[200px_1fr_1.1fr] max-[860px]:grid-cols-1 gap-7 max-[860px]:gap-[10px] py-7 border-b border-line items-start reveal"
             >
@@ -33,7 +34,7 @@ export function ServicesSection ({service}:{service:any[]}){
               <div className="min-w-0">
               <div className="[&_p]:text-ink-2 [&_ul]:mt-[10px] [&_ul]:p-0 [&_ul]:list-none [&_ul]:flex [&_ul]:flex-wrap [&_ul]:gap-[6px] [&_ul_li]:text-[0.82rem] [&_ul_li]:px-[10px] [&_ul_li]:py-1 [&_ul_li]:border [&_ul_li]:border-line [&_ul_li]:rounded-full [&_ul_li]:text-ink-2 [&_ul_li]:bg-paper" dangerouslySetInnerHTML={{__html:svc?.content ?? ""}} />
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </ScrollReveal>

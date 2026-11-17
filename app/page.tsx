@@ -84,6 +84,7 @@ export interface LandingPageResponse {
   grp: GrpSection;
   founder:AboutSection;
   service:{id:string;
+    slug:string;
     tag:string;
     title:string;
     content:string;

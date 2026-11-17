@@ -7,8 +7,8 @@ import React, {
   useEffect,
   ReactNode
 } from "react";
-
 export const dynamic = "force-dynamic";
+
 interface Contact {
   phone: string | null;
   instagram: string | null;
@@ -22,6 +22,11 @@ interface Contact {
 }
 interface LayoutResponse {
   contact: Contact | null;
+  service:{
+    id:number,
+    title:string,
+    slug:string,
+  }[];
 }
 
 interface LayoutContextType {
@@ -40,7 +45,7 @@ export function LayoutProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const baseUrl =
-      process.env.NEXT_PUBLIC_API_URL?.replace(/\/+$/, "") || "/api";
+      process.env.NEXT_PUBLIC_API_URL || "/api";
 
     fetch(`${baseUrl}/layout`)
       .then((res) => {
@@ -51,6 +56,7 @@ export function LayoutProvider({ children }: { children: ReactNode }) {
       })
       .then((layoutRes) => {
         setLayoutData({
+          service: layoutRes.service ?? [],
           contact: layoutRes.contact ?? null,
         });
         setLoading(false);
