@@ -86,7 +86,7 @@ export default async function ContactPage() {
         {data?.faq && <FaqSection faq={data?.faq ?? []} />}
       </main>
       <Footer />
-      {/* <FloatingWhatsApp /> */}
+      <FloatingWhatsApp />
     </>
   );
 }

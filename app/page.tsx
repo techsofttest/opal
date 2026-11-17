@@ -166,7 +166,7 @@ export default async function Home() {
         <ContactSection />
       </main>
       <Footer />
-      {/* <FloatingWhatsApp /> */}
+      <FloatingWhatsApp />
     </>
   );
 }

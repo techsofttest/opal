@@ -117,7 +117,7 @@ export default async function AboutPage() {
         <GroupSection grp={data?.grp} />
       </main>
       <Footer />
-      {/* <FloatingWhatsApp /> */}
+      <FloatingWhatsApp />
     </>
   );
 }

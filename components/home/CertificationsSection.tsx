@@ -14,7 +14,7 @@ export function CertificationsSection({certificate}:{certificate:any[]}){
             >
               <div>
                 {/* Big icon */}
-                <div className="h-16 sm:h-20 w-auto flex items-center justify-start mb-4 shrink-0">
+                <div className="h-18 sm:h-20 w-auto flex items-center justify-center mb-4 shrink-0">
                   {item.image ? (
                     <Image
                       src={item.image}

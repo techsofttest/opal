@@ -6,6 +6,7 @@ import {BannerImage} from "@/components/service/BannerImage";
 import {RelatedService} from "@/components/service/RelatedService";
 import {ServiceContent} from "@/components/service/ServiceContent";
 import { ContactSection } from "@/components/home/ContactSection";
+import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -108,6 +109,7 @@ export default async function ServiceDetailPage({
       <ContactSection />
     </main>
       <Footer />
+      <FloatingWhatsApp />
     </>
   );
 }

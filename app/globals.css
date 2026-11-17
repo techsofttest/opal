@@ -248,11 +248,11 @@
   .animated-process-line {
     background: linear-gradient(
       90deg,
-      rgba(16, 185, 129, 0.25) 0%,
-      rgba(16, 185, 129, 0.95) 30%,
-      #ea580c 50%,
-      rgba(16, 185, 129, 0.95) 70%,
-      rgba(16, 185, 129, 0.25) 100%
+      rgba(220, 235, 230, 0.25) 0%,
+      rgba(226, 231, 230, 0.95) 30%,
+      #eeebe9 50%,
+      rgba(217, 224, 222, 0.95) 70%,
+      rgba(222, 230, 227, 0.25) 100%
     );
     background-size: 200% 100%;
     animation: lineFlow 3.5s linear infinite;

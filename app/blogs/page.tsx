@@ -85,7 +85,7 @@ export default async function BlogsPage() {
         <ContactSection />
       </main>
       <Footer />
-      {/* <FloatingWhatsApp /> */}
+      <FloatingWhatsApp />
     </>
   );
 }

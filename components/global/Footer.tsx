@@ -65,7 +65,7 @@ export function Footer(){
 
             <div className="relative w-14 sm:w-16 h-14 sm:h-16">
               <Image
-                src="/footer/ecovadis-platinum.png"
+                src="/icons/ecovadis.png"
                 alt="EcoVadis Platinum Certification"
                 fill
                 className="object-contain"
