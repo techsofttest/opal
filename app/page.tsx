@@ -155,6 +155,7 @@ export default async function Home() {
         <CertificationsSection certificate={data?.certificate ?? []} />
         <AboutSection about={data?.about} />
         <FounderSection  founder={data?.founder} />
+        <ServicesSection service={data?.service ?? []}/>
         <WorkSection project={data?.project ?? []} />
         <ProcessSection work={data?.work}/>
         {data?.cli && data?.client &&<SectorsSection cli={data?.cli} client={data?.client}/>}
