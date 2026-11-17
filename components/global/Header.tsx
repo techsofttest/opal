@@ -14,13 +14,6 @@ export const Header = () => {
 
   const { layoutData } = useLayoutData();
   const services = layoutData?.service || [];
-  const serviceSubLinks = [
-    { label: "Villa Gardens", href: "/services/villa-gardens" },
-    { label: "Pools & Water Features", href: "/services/pools-water" },
-    { label: "Hardscape & Lighting", href: "/services/hardscape-lighting" },
-    { label: "Themed Parks", href: "/services/themed-parks" },
-    { label: "Planting & Maintenance", href: "/services/planting-maintenance" },
-  ];
 
   const navLinks = [
     { label: "About", href: "/about" },
@@ -143,7 +136,7 @@ export const Header = () => {
               {services.map((sub) => (
                 <Link
                   key={sub.id}
-                  href={sub.slug}
+                  href={`/services/${sub.slug}`}
                   onClick={() => {
                     setServicesOpen(false);
                     setMenuOpen(false);
