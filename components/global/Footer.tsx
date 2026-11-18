@@ -46,8 +46,8 @@ export function Footer(){
             </p>
           </div>
 
-          {/* Verification & Trust Badges */}
-          <div className="flex flex-wrap items-center gap-4 sm:gap-6">
+          <div className="flex flex-col items-end gap-9">
+           <div className="flex flex-wrap items-center justify-end gap-4 sm:gap-6">
             <a
               href="https://share.google/7tHx42ybaLgGtLjyV"
               target="_blank"
@@ -99,11 +99,19 @@ export function Footer(){
               />
             </div>
           </div>
-        </div>
+          
+            <a
+              href="https://www.techsoftweb.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-palm transition-colors text-[0.85rem] hover:text-[#b48816] hover:underline underline-offset-4 font-semibold"
+            >
+              Web Design Company in Kochi Techsoft
+            </a>
+        </div></div>
 
         {/* Bottom / Links & Social Media Icons */}
         <div className="flex flex-wrap items-center justify-end gap-4">
-
           <div className="flex items-center gap-3" aria-label="Social media profiles">
             <a
               href={contact?.instagram || ""}

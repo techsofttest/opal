@@ -1,5 +1,6 @@
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import Image from "next/image";
 export interface Hero {
   title: string;
   subtitle: string;
@@ -19,21 +20,17 @@ export function ClimateSection({page}:{page?:Hero}){
             {page?.subtitle}
           </h2>
           <div className="lead !text-on-palm-2 mt-5 reveal delay-2" dangerouslySetInnerHTML={{__html:page?.content ?? ""}} />
-          <figure className="mt-7 grid gap-[10px] m-0 reveal delay-3">
-            <video
-              src="/img/drip-planting.mp4"
-              poster="/img/drip-planting-poster.jpg"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              aria-label="New roundabout planting laid out on drip irrigation lines"
-              className="w-full max-w-full aspect-video object-cover rounded-[4px] bg-palm-2 block"
-            ></video>
-            <figcaption className="font-mono text-[0.74rem] tracking-[0.04em] text-on-palm-2">
+          <figure className="relative aspect-[16/10] overflow-hidden m-0 bg-sand-2">
+                          <Image
+                            src={page?.image ?? ""}
+                            alt={page?.title ?? "" }
+                            fill
+                            sizes="(max-width: 860px) 100vw, 33vw"
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+            {/* <figcaption className="font-mono text-[0.74rem] tracking-[0.04em] text-on-palm-2">
               New roundabout planting on drip irrigation, one emitter per plant.
-            </figcaption>
+            </figcaption> */}
           </figure>
         </div>
         <div className="min-w-0 grid border-t border-[color-mix(in_srgb,var(--on-palm)_20%,transparent)]">

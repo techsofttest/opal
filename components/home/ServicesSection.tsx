@@ -1,9 +1,12 @@
+"use client";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export function ServicesSection ({service}:{service:any[]}){
-
+  const pathname = usePathname();
+  const isServicesPage = pathname === "/services";
   return (
     <section id="services" className="bg-sand py-[clamp(64px,9vw,120px)]">
       <ScrollReveal className="wrap">
@@ -16,9 +19,9 @@ export function ServicesSection ({service}:{service:any[]}){
               One contractor, from first sketch to year-five maintenance.
             </h2>
           </div>
-          <a className="btn btn-ghost reveal delay-2" href="/contact">
-            Discuss a project
-          </a>
+          {!isServicesPage && (<a className="btn btn-ghost reveal delay-2" href="/services">
+           View more
+          </a>)}
         </div>
 
         <div className="border-t border-line">

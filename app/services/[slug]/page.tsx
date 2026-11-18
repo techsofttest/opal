@@ -7,6 +7,7 @@ import {RelatedService} from "@/components/service/RelatedService";
 import {ServiceContent} from "@/components/service/ServiceContent";
 import { ContactSection } from "@/components/home/ContactSection";
 import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
+import { ServiceSidebar } from "@/components/service/ServiceSidebar";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -102,6 +103,7 @@ export default async function ServiceDetailPage({
           <section className="wrap max-w-[1040px] pb-20">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_310px] gap-12 items-start">
         <ServiceContent post={content}/>
+        <ServiceSidebar page={page} />
         </div></section>
 
 
