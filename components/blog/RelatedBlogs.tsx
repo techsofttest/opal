@@ -18,7 +18,7 @@ export function RelatedBlogs({ posts }: {posts?:Blog[]}){
   return (
     <section className="py-16 bg-sand">
       <div className="wrap max-w-[1040px]">
-        <div className="flex justify-between items-end gap-4 mb-8">
+        <div className="flex flex-wrap justify-between items-end gap-4 mb-8">
           <div>
             <Eyebrow>Continue Reading</Eyebrow>
             <h2 className="heading-display text-[1.8rem] sm:text-[2.2rem] mt-1 text-ink">

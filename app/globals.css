@@ -153,7 +153,21 @@
     font-family: var(--body);
     transition: background 0.2s, color 0.2s, transform 0.2s;
   }
+  /* Hide scrollbar but preserve scrolling */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+@media (max-width: 480px) {
+    .btn {
+        padding: 0.7rem 1.1rem;
+        font-size: 0.88rem;
+    }
+}
   .btn-solid {
     background: var(--palm);
     color: var(--on-palm);

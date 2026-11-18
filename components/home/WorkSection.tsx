@@ -54,46 +54,56 @@ export function WorkSection({ project }: { project: ProjectItem[] }) {
           </div>
 
           {/* Category Filters */}
-          <div
-            className="flex flex-wrap items-center gap-2 w-full lg:w-auto"
-            role="group"
-            aria-label="Filter projects"
-          >
-            {dynamicCategories.map((item) => {
-              const isActive = filter === item.key;
+         {/* Category Filters */}
+<div
+  className="
+    flex items-center gap-2
+    w-full lg:w-auto
+    overflow-x-auto
+    overflow-y-hidden
+    whitespace-nowrap
+    pb-2
+    scrollbar-hide
+    scroll-smooth
+    snap-x snap-mandatory
+  "
+  role="group"
+  aria-label="Filter projects"
+>
+  {dynamicCategories.map((item) => {
+    const isActive = filter === item.key;
 
-              return (
-                <button
-                  key={item.key}
-                  type="button"
-                  aria-pressed={isActive}
-                  onClick={() => setFilter(item.key)}
-                  className={`
-                    inline-flex items-center justify-center
-                    whitespace-nowrap shrink-0
-                    text-[0.82rem] sm:text-[0.88rem]
-                    font-semibold
-                    py-[0.65em] px-[1.25em]
-                    rounded-full border
-                    cursor-pointer
-                    transition-all duration-300 ease-in-out
-                    focus-visible:outline-none
-                    focus-visible:ring-2
-                    focus-visible:ring-palm
-                    focus-visible:ring-offset-2
-                    ${
-                      isActive
-                        ? "bg-palm border-palm text-on-palm shadow-sm"
-                        : "bg-paper border-line text-ink-2 hover:bg-palm hover:border-palm hover:text-on-palm"
-                    }
-                  `}
-                >
-                  {item.label}
-                </button>
-              );
-            })}
-          </div>
-        </div>
+    return (
+      <button
+        key={item.key}
+        type="button"
+        aria-pressed={isActive}
+        onClick={() => setFilter(item.key)}
+        className={`
+          inline-flex items-center justify-center
+          whitespace-nowrap shrink-0 snap-start
+          text-[0.82rem] sm:text-[0.88rem]
+          font-semibold
+          py-[0.65em] px-[1.25em]
+          rounded-full border
+          cursor-pointer
+          transition-all duration-300 ease-in-out
+          focus-visible:outline-none
+          focus-visible:ring-2
+          focus-visible:ring-palm
+          focus-visible:ring-offset-2
+          ${
+            isActive
+              ? "bg-palm border-palm text-on-palm shadow-sm"
+              : "bg-paper border-line text-ink-2 hover:bg-palm hover:border-palm hover:text-on-palm"
+          }
+        `}
+      >
+        {item.label}
+      </button>
+    );
+  })}
+</div></div>
 
         {/* Projects Gallery */}
         <div className="gal" id="gal">
