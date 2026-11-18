@@ -16,7 +16,7 @@ export function Footer(){
         {/* Top / Badges Row */}
         <div className="flex flex-wrap items-center justify-between gap-6 pb-8 border-b border-line">
           {/* Logo & Copyright */}
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col items-center sm:items-start gap-2 w-full sm:w-auto">
             <Link
               className="relative z-10 flex items-center no-underline py-2"
               href="/"
@@ -29,8 +29,9 @@ export function Footer(){
                   width={70}
                   height={70}
                   priority
-                  className="h-12 sm:h-20 w-auto object-contain shrink-0"
+                  className="h-14 sm:h-20 w-auto object-contain shrink-0"
                 />
+
                 <div className="flex flex-col justify-center leading-none select-none">
                   <span className="font-display font-bold text-[#014c48] text-[1.45rem] sm:text-[1.85rem] tracking-[0.03em] leading-[1]">
                     OPAL
@@ -41,78 +42,77 @@ export function Footer(){
                 </div>
               </div>
             </Link>
-            <p className="text-[0.82rem] text-ink-2">
-             Copyright @ 2026 Opal Landscaping LLC
+
+            <p className="text-[0.82rem] text-ink-2 text-center sm:text-left">
+              Copyright @ 2026 Opal Landscaping LLC
             </p>
           </div>
 
-          <div className="flex flex-col items-end gap-9">
-           <div className="flex flex-wrap items-center justify-end gap-4 sm:gap-6">
-            <a
-              href="https://share.google/7tHx42ybaLgGtLjyV"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative w-28 sm:w-32 h-14 sm:h-16 transition-transform duration-200 hover:scale-105"
-              aria-label="View Opal Landscaping Google Reviews"
-            >
-              <Image
-                src="/footer/google-review.png"
-                alt="Google 5-star Reviews Badge"
-                fill
-                className="object-contain"
-              />
-            </a>
+          <div className="flex w-full sm:w-auto flex-col items-center sm:items-end gap-5">
+              <div className="flex flex-nowrap items-center justify-center gap-2 sm:gap-5 w-full">
 
-            <div className="relative w-14 sm:w-16 h-14 sm:h-16">
-              <Image
-                src="/icons/ecovadis.png"
-                alt="EcoVadis Platinum Certification"
-                fill
-                className="object-contain"
-              />
-            </div>
+                <a
+                  href="https://share.google/7tHx42ybaLgGtLjyV"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative w-20 sm:w-32 h-12 sm:h-16 shrink-0 transition-transform duration-200 hover:scale-105"
+                  aria-label="View Opal Landscaping Google Reviews"
+                >
+                  <Image
+                    src="/footer/google-review.png"
+                    alt="Google 5-star Reviews Badge"
+                    fill
+                    className="object-contain"
+                  />
+                </a>
 
-            <div className="relative w-14 sm:w-16 h-14 sm:h-16">
-              <Image
-                src="/icons/iso-9001.png"
-                alt="ISO Certified Management System"
-                fill
-                className="object-contain"
-              />
-            </div>
-            
-            <div className="relative w-14 sm:w-16 h-14 sm:h-16">
-              <Image
-                src="/icons/iso-14001.png"
-                alt="ISO Certified Management System"
-                fill
-                className="object-contain"
-              />
-            </div>
-            
-            <div className="relative w-14 sm:w-16 h-14 sm:h-16">
-              <Image
-                src="/icons/iso-45001.png"
-                alt="ISO Certified Management System"
-                fill
-                className="object-contain"
-              />
-            </div>
-          </div>
-          
-            <a
-              href="https://www.techsoftweb.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-palm transition-colors text-[0.85rem] hover:text-[#b48816] hover:underline underline-offset-4 font-semibold"
-            >
-              Web Design Company in Kochi Techsoft
-            </a>
-        </div></div>
+                {[
+                  {
+                    src: "/icons/ecovadis.png",
+                    alt: "EcoVadis Platinum Certification",
+                  },
+                  {
+                    src: "/icons/iso-9001.png",
+                    alt: "ISO 9001 Certification",
+                  },
+                  {
+                    src: "/icons/iso-14001.png",
+                    alt: "ISO 14001 Certification",
+                  },
+                  {
+                    src: "/icons/iso-45001.png",
+                    alt: "ISO 45001 Certification",
+                  },
+                ].map((badge) => (
+                  <div
+                    key={badge.src}
+                    className="relative w-10 h-10 sm:w-16 sm:h-16 shrink-0"
+                  >
+                    <Image
+                      src={badge.src}
+                      alt={badge.alt}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                ))}
+
+              </div>
+
+              <a
+                href="https://www.techsoftweb.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-palm text-[0.8rem] sm:text-[0.85rem] text-center sm:text-right font-semibold transition-colors hover:text-[#b48816] hover:underline underline-offset-4"
+              >
+                Web Design Company in Kochi Techsoft
+              </a>
+
+            </div></div>
 
         {/* Bottom / Links & Social Media Icons */}
-        <div className="flex flex-wrap items-center justify-end gap-4">
-          <div className="flex items-center gap-3" aria-label="Social media profiles">
+        <div className="flex flex-wrap items-center justify-center sm:justify-center gap-4 pb-20 sm:pb-0">
+        <div className="flex items-center gap-3" aria-label="Social media profiles">
             <a
               href={contact?.instagram || ""}
               target="_blank"

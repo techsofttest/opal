@@ -11,7 +11,7 @@ export function FloatingWhatsApp() {
   return (
     <aside
       aria-label="Quick contact actions"
-      className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-auto max-w-[calc(100vw-32px)]"
+      className="fixed bottom-6 right-6 z-50 pointer-events-auto max-w-[calc(100vw-32px)]"
     >
       <div className="flex items-center rounded-full bg-[#067a63] text-white shadow-[0_8px_24px_rgba(0,0,0,0.18)] overflow-hidden">
         {/* Chat (WhatsApp) Half */}
