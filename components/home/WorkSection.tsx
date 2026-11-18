@@ -34,7 +34,7 @@ const [filter, setFilter] = useState("all");
 
   return (
     <section id="work" className="py-[clamp(64px,9vw,120px)]">
-      <div className="wrap">{/* i have removed ScrollReveal*/}
+      <ScrollReveal className="wrap">{/* i have removed ScrollReveal*/}
         <div className="flex justify-between items-end gap-6 flex-wrap mb-0">
           <div className="grid gap-[14px] max-w-[640px]">
             <div className="reveal">
@@ -96,7 +96,7 @@ const [filter, setFilter] = useState("all");
             </figure>
           ))}
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 };
