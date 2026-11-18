@@ -99,14 +99,14 @@ export function Footer(){
 
               </div>
 
-              <a
+              {/* <a
                 href="https://www.techsoftweb.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-palm text-[0.8rem] sm:text-[0.85rem] text-center sm:text-right font-semibold transition-colors hover:text-[#b48816] hover:underline underline-offset-4"
               >
                 Web Design Company in Kochi Techsoft
-              </a>
+              </a> */}
 
             </div></div>
 

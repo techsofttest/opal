@@ -92,10 +92,10 @@ export default async function FaqPage() {
       <Header />
       <main id="top">
         <InnerHero
-          eyebrow="Help & Advice"
-          title="Clear answers to common Dubai landscaping questions."
-          description="Everything you need to know about municipal approvals, smart irrigation efficiency, scheduled maintenance contracts, and realistic project budgets."
-          imageSrc="/img/stepping-stones.jpg"
+          eyebrow={data?.hero.title || ""}
+          title={data?.hero.subtitle || ""}
+          description={data?.hero.content || ""}
+          imageSrc={data?.hero.image || "/img/palm-pool.jpg"}
           imageAlt="Lit stone stepping slabs crossing an outdoor water feature"
         />
         {data?.faq && <FaqSection faq={data?.faq ?? []} />}

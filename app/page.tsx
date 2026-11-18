@@ -152,17 +152,17 @@ export default async function Home() {
       <Header />
       <main id="top">
         <HeroSection banner={data?.hero} />
-        <FiguresSection stat={data?.stat ?? []} />
-        <CertificationsSection certificate={data?.certificate ?? []} />
+        {data?.stat &&<FiguresSection stat={data?.stat ?? []} />}
+        {data?.certificate &&<CertificationsSection certificate={data?.certificate ?? []} />}
         <AboutSection about={data?.about} />
         <FounderSection  founder={data?.founder} />
-        <ServicesSection service={data?.service ?? []}/>
-        <WorkSection project={data?.project ?? []} />
+        {data?.service &&<ServicesSection service={data?.service ?? []}/>}
+        {data?.project &&<WorkSection project={data?.project ?? []} />}
         <ProcessSection work={data?.work}/>
         {data?.cli && data?.client &&<SectorsSection cli={data?.cli} client={data?.client}/>}
         <GroupSection grp={data?.grp} />
-        <BlogSection blog={data?.blog ?? []}/>
-        <FaqSection  faq={data?.faq ?? []} />
+        {data?.blog &&<BlogSection blog={data?.blog ?? []}/>}
+        {data?.faq &&<FaqSection  faq={data?.faq ?? []} />}
         <ContactSection />
       </main>
       <Footer />

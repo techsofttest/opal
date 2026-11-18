@@ -13,7 +13,7 @@ export function ServiceHeader ({ post }: {post?:Hero}){
     <section className="bg-palm text-on-palm pt-[clamp(32px,5vw,56px)] pb-[clamp(40px,6vw,68px)]">
       <div className="wrap max-w-[900px]">
         <Link
-          href="/servies"
+          href="/services"
           className="inline-flex items-center gap-2 text-white hover:text-white transition-colors text-[0.88rem] font-semibold mb-6 group"
         >
           <FaArrowLeft className="text-xs transition-transform group-hover:-translate-x-1" />
