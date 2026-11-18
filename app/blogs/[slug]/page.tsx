@@ -166,10 +166,7 @@ export default async function BlogPostPage({
         />
 
         <section className="wrap max-w-[1040px] pb-20">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_310px] gap-12 items-start">
             <BlogContent post={post.content} />
-            <BlogSidebar page={data.page} />
-          </div>
         </section>
 
         <RelatedBlogs posts={data.blog} />

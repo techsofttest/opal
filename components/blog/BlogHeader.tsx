@@ -24,9 +24,9 @@ export function BlogHeader ({ post }: {post?:Hero}){
         </Link>
 
         <div className="flex flex-wrap items-center gap-3 mb-4">
-          <span className="bg-leaf/20 text-white font-mono text-[0.72rem] tracking-wider uppercase px-3 py-1 rounded-full font-medium">
+          {post?.badge && <span className="bg-leaf/20 text-white font-mono text-[0.72rem] tracking-wider uppercase px-3 py-1 rounded-full font-medium">
             {post?.badge}
-          </span>
+          </span>}
           <span className="text-on-palm-2 font-mono text-[0.78rem]">
             {post?.date} · {post?.read_time}
           </span>
