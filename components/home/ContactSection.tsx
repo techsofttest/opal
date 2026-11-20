@@ -137,7 +137,7 @@ Please contact me to arrange a site visit.`;
                 Office
               </small>
               <a
-                href={`tel:{contact?.phone}`}
+                href={`tel:${contact?.phone}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[1.1rem] no-underline select-all hover:underline">{contact?.phone}</a>
