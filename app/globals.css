@@ -300,4 +300,67 @@
       transition: none !important;
     }
   }
+ /* ========================================
+   CLIENT LOGO MARQUEE
+======================================== */
+
+.client-marquee {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.client-marquee-track {
+  display: flex;
+  width: max-content;
+  flex-wrap: nowrap;
+  animation: clientMarquee 35s linear infinite;
+  will-change: transform;
+}
+
+.client-marquee-group {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.client-marquee-item {
+  flex: 0 0 auto;
+  width: calc(100vw - 40px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+}
+
+/* Tablet */
+@media (min-width: 640px) {
+  .client-marquee-item {
+    width: calc((100vw - 64px) / 2);
+  }
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+  .client-marquee-item {
+    width: calc((min(100vw, 1180px) - 40px) / 3);
+  }
+}
+
+/* Continuous movement */
+@keyframes clientMarquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Pause on hover */
+.client-marquee:hover .client-marquee-track {
+  animation-play-state: paused;
+} 
 }

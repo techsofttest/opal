@@ -32,7 +32,7 @@ export function BlogSection({
             </div>
             <h2 className="heading-display text-[clamp(2rem,4.2vw,3.2rem)] reveal delay-1">
               {showAll
-                ? "All insights & technical articles on desert landscaping."
+                ? "Expert Insights, Landscaping Tips & Technical Articles"
                 : "Latest thoughts on desert landscaping, design & care."}
             </h2>
           </div>
@@ -77,7 +77,7 @@ export function BlogSection({
                       {post.title}
                     </Link>
                   </h3>
-                  <div className="mt-3 text-ink-2 text-[0.94rem] leading-relaxed line-clamp-3" dangerouslySetInnerHTML={{__html:post.content }} />
+                  {/* <div className="mt-3 text-ink-2 text-[0.94rem] leading-relaxed line-clamp-3" dangerouslySetInnerHTML={{__html:post.content }} /> */}
                 </div>
 
                 <div className="mt-6 pt-4 border-t border-line flex items-center justify-between">

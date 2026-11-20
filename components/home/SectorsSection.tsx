@@ -3,8 +3,6 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
 
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
@@ -44,48 +42,6 @@ export function SectorsSection({
   client = [],
   cli,
 }: SectorsSectionProps) {
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [snapCount, setSnapCount] = useState(0);
-
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    {
-      loop: client.length > 3,
-      align: "center",
-      skipSnaps: false,
-    },
-    [
-      Autoplay({
-        delay: 2500,
-        stopOnInteraction: false,
-        stopOnMouseEnter: true,
-      }),
-    ]
-  );
-
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-
-    setSelectedIndex(emblaApi.selectedScrollSnap());
-  }, [emblaApi]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-
-    setSnapCount(emblaApi.scrollSnapList().length);
-    onSelect();
-
-    emblaApi.on("select", onSelect);
-    emblaApi.on("reInit", onSelect);
-
-    return () => {
-      emblaApi.off("select", onSelect);
-      emblaApi.off("reInit", onSelect);
-    };
-  }, [emblaApi, onSelect, client.length]);
-
-  const scrollTo = (index: number) => {
-    emblaApi?.scrollTo(index);
-  };
 
   return (
     <section id="sectors" className="py-[clamp(64px,9vw,120px)]">
@@ -148,80 +104,53 @@ export function SectorsSection({
             ))}
 
           </div>
-        )}
+        )}{/* Dynamic Clients Marquee */}
+{client.length > 0 && (
+  <div className="mt-14 pt-10 border-t border-line flex flex-col items-center text-center">
 
-        {/* Dynamic Clients Section */}
-        {client.length > 0 && (
-          <div className="mt-14 pt-10 border-t border-line flex flex-col items-center text-center">
+    <div className="reveal">
+      <Eyebrow>Meet Our Clients</Eyebrow>
+    </div>
 
-            <div className="reveal">
-              <Eyebrow>Meet Our Clients</Eyebrow>
-            </div>
+    <div className="reveal delay-1 w-full max-w-7xl mx-auto mt-6">
 
-            <div className="reveal delay-1 w-full max-w-7xl mx-auto mt-6">
+      <div className="client-marquee py-10">
 
-              <div
-                className="overflow-hidden py-10 cursor-grab active:cursor-grabbing"
-                ref={emblaRef}
-              >
-                <div className="flex -ml-6 sm:-ml-10 items-center">
+        <div className="client-marquee-track">
 
-                  {client.map((item) => (
-                    <div
-                      key={item.id}
-                      className="
-                        flex-[0_0_100%]
-                        sm:flex-[0_0_50%]
-                        md:flex-[0_0_33.333%]
-                        min-w-0
-                        pl-6 sm:pl-10
-                        flex items-center justify-center
-                      "
-                    >
-                      <div className="relative h-44 sm:h-56 md:h-64 lg:h-72 w-full max-w-[420px] flex items-center justify-center p-4">
-
-                        <Image
-                          src={item.image}
-                          alt={item.title}
-                          fill
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                          className="object-contain"
-                        />
-
-                      </div>
-                    </div>
-                  ))}
-
-                </div>
-              </div>
-
-              {/* Dynamic Navigation Indicators */}
-              {snapCount > 1 && (
+          {[0, 1].map((group) => (
+            <div
+              key={group}
+              className="client-marquee-group"
+              aria-hidden={group === 1}
+            >
+              {client.map((item) => (
                 <div
-                  className="flex justify-center items-center gap-3 mt-6"
-                  role="tablist"
-                  aria-label="Client carousel indicators"
+                  key={`${group}-${item.id}`}
+                  className="client-marquee-item"
                 >
-                  {Array.from({ length: snapCount }).map((_, index) => (
-                    <button
-                      key={index}
-                      type="button"
-                      onClick={() => scrollTo(index)}
-                      className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                        selectedIndex === index
-                          ? "w-8 bg-palm"
-                          : "w-2.5 bg-line hover:bg-ink-2"
-                      }`}
-                      aria-label={`Go to slide ${index + 1}`}
-                      aria-pressed={selectedIndex === index}
-                    />
-                  ))}
-                </div>
-              )}
+                  <div className="relative h-44 sm:h-56 md:h-64 lg:h-72 w-full max-w-[420px] flex items-center justify-center p-4">
 
+                    <Image
+                      src={item.image}
+                      alt={group === 0 ? item.title : ""}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-contain"
+                    />
+
+                  </div>
+                </div>
+              ))}
             </div>
-          </div>
-        )}
+          ))}
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+)}
 
       </ScrollReveal>
     </section>

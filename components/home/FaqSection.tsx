@@ -10,7 +10,7 @@ export function FaqSection ({faq}:{faq:any[]}){
             <Eyebrow>FAQ</Eyebrow>
           </div>
           <h2 className="heading-display text-[clamp(2rem,4.2vw,3.2rem)] mt-[14px] reveal delay-1">
-            Common questions from Dubai clients.
+            Common Questions About Landscaping Services in Dubai
           </h2>
         </div>
         <div className="min-w-0">

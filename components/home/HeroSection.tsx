@@ -17,7 +17,7 @@ export function HeroSection({ banner }: { banner?: Hero }) {
       <ScrollReveal className="wrap grid grid-cols-[1.15fr_0.85fr] max-[860px]:grid-cols-1 gap-[clamp(28px,5vw,64px)] items-center">
         <div>
           <div className="reveal">
-            <Eyebrow>{banner?.title}</Eyebrow>
+            <h1 className="eyebrow">{banner?.title}</h1>
           </div>
           <h1 className="heading-display text-[clamp(2.7rem,6.6vw,5.4rem)] mt-[18px] reveal delay-1 [&_i]:italic [&_i]:text-palm-2 " dangerouslySetInnerHTML={{ __html: banner?.subtitle ?? "" }} />
           <div className="lead mt-[22px] reveal delay-2" dangerouslySetInnerHTML={{ __html: banner?.content ?? "" }} />

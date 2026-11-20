@@ -28,7 +28,7 @@ export function ServicesSection({ service }: { service: any[] }) {
               <Eyebrow>What we do</Eyebrow>
             </div>
             <h2 className="heading-display text-[clamp(2rem,4.2vw,3.2rem)] reveal delay-1">
-              One contractor, from first sketch to year-five maintenance.
+              Complete Landscaping Solutions, From Design to Maintenance
             </h2>
           </div>
           {!isServicesPage && (
