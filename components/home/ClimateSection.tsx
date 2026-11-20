@@ -33,13 +33,13 @@ export function ClimateSection({page}:{page?:Hero}){
             </figcaption> */}
           </figure>
         </div>
-        <div className="min-w-0 grid border-t border-[color-mix(in_srgb,var(--on-palm)_20%,transparent)]">
+        {page?.detail && page.detail.length > 0 && (<div className="min-w-0 grid border-t border-[color-mix(in_srgb,var(--on-palm)_20%,transparent)]">
           {page?.detail.map((p,idx)=>(
           <div key={idx} className="grid grid-cols-[110px_1fr] max-[860px]:grid-cols-[90px_1fr] gap-[18px] py-[18px] border-b border-[color-mix(in_srgb,var(--on-palm)_20%,transparent)] reveal delay-1">
             <b className="font-mono font-medium text-[0.9rem] text-leaf">{p.title}</b>
             <span className="text-on-palm-2 text-[0.96rem]" dangerouslySetInnerHTML={{__html:p.description}} />
           </div>))}
-        </div>
+        </div>)}
       </ScrollReveal>
     </section>
   );
