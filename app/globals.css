@@ -300,9 +300,7 @@
       transition: none !important;
     }
   }
- /* ========================================
-   CLIENT LOGO MARQUEE
-======================================== */
+/* Client Logo Marquee */
 
 .client-marquee {
   width: 100%;
@@ -323,44 +321,36 @@
   flex: 0 0 auto;
   flex-wrap: nowrap;
   align-items: center;
+  gap: 0;
 }
 
 .client-marquee-item {
-  flex: 0 0 auto;
-  width: calc(100vw - 40px);
+  flex: 0 0 clamp(220px, 30vw, 380px);
+  width: clamp(220px, 30vw, 380px);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 12px;
 }
 
-/* Tablet */
-@media (min-width: 640px) {
-  .client-marquee-item {
-    width: calc((100vw - 64px) / 2);
-  }
-}
-
-/* Desktop */
-@media (min-width: 768px) {
-  .client-marquee-item {
-    width: calc((min(100vw, 1180px) - 40px) / 3);
-  }
-}
-
-/* Continuous movement */
 @keyframes clientMarquee {
   from {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
 
   to {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
-/* Pause on hover */
 .client-marquee:hover .client-marquee-track {
   animation-play-state: paused;
-} 
+}
+
+@media (max-width: 640px) {
+  .client-marquee-item {
+    flex-basis: 240px;
+    width: 240px;
+  }
+}
 }
