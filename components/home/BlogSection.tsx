@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -20,7 +23,17 @@ export function BlogSection({
   showAll = false,
   showAllButton = true,blog
 }: BlogSectionProps){
-  const posts = showAll ? blog : blog.slice(0, 3);
+const [visibleCount, setVisibleCount] = useState(6);
+
+const posts = showAll
+  ? blog.slice(0, visibleCount)
+  : blog.slice(0, 3);
+
+const hasMore = showAll && visibleCount < blog.length;
+
+const loadMore = () => {
+  setVisibleCount((prev) => prev + 3);
+};
 
   return (
     <section id="blogs" className="py-[clamp(64px,9vw,120px)] bg-sand">
@@ -102,8 +115,33 @@ export function BlogSection({
                   </Link>
                 </div>
               </div>
-            </article>
+            </article>          
           ))}
+          {/* Load More */}
+{hasMore && (
+  <div className="flex justify-center mt-12 reveal">
+    <button
+      type="button"
+      onClick={loadMore}
+      className="btn btn-ghost hover:bg-sand-2 text-ink text-[0.88rem]"
+    >
+      Load More Articles
+      <svg
+        className="w-4 h-4"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        strokeWidth={2}
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M12 5v14m-7-7h14"
+        />
+      </svg>
+    </button>
+  </div>
+)}
         </div>
       </ScrollReveal>
     </section>

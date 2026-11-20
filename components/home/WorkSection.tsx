@@ -16,6 +16,7 @@ interface ProjectItem {
 }
 
 export function WorkSection({ project }: { project: ProjectItem[] }) {
+  const [visibleCount, setVisibleCount] = useState(12);
   const [filter, setFilter] = useState("all");
 
   const dynamicCategories = useMemo(() => {
@@ -38,7 +39,9 @@ export function WorkSection({ project }: { project: ProjectItem[] }) {
     filter === "all"
       ? project
       : project.filter((item) => item.tag === filter);
+const visibleProjects = filteredProjects.slice(0, visibleCount);
 
+const hasMore = visibleCount < filteredProjects.length;
   return (
     <section id="work" className="py-[clamp(64px,9vw,120px)]">
       <div className="wrap">
@@ -78,7 +81,7 @@ export function WorkSection({ project }: { project: ProjectItem[] }) {
         key={item.key}
         type="button"
         aria-pressed={isActive}
-        onClick={() => setFilter(item.key)}
+        onClick={() => {setFilter(item.key);setVisibleCount(6);}}
         className={`
           inline-flex items-center justify-center
           whitespace-nowrap shrink-0 snap-start
@@ -107,7 +110,7 @@ export function WorkSection({ project }: { project: ProjectItem[] }) {
 
         {/* Projects Gallery */}
         <div className="gal" id="gal">
-          {filteredProjects.map((item, index) => (
+          {visibleProjects.map((item, index) => (
             <figure
               key={item.id ?? `${item.title}-${index}`}
               className={`
@@ -138,7 +141,32 @@ export function WorkSection({ project }: { project: ProjectItem[] }) {
             </figure>
           ))}
         </div>
+          {/* Load More Projects */}
+        {hasMore && (
+          <div className="flex justify-center mt-12">
+            <button
+              type="button"
+              onClick={() => setVisibleCount((prev) => prev + 4)}
+              className="btn btn-ghost hover:bg-sand-2 text-ink text-[0.88rem]"
+            >
+              Load More Projects
 
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 5v14m-7-7h14"
+                />
+              </svg>
+            </button>
+          </div>
+        )}
         {filteredProjects.length === 0 && (
           <p className="text-center py-12 text-ink-2">
             No projects found in this category.
